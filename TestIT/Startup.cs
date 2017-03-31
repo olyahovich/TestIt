@@ -1,4 +1,5 @@
-﻿using TestIT.Data;
+﻿using System;
+using TestIT.Data;
 using TestIT.Models;
 using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
@@ -13,16 +14,28 @@ using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.WebApi.Processors.Security;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using RabbitMQ.Client;
+using RawRabbit;
+using RawRabbit.Configuration;
+using RawRabbit.Enrichers.GlobalExecutionId;
+using RawRabbit.vNext;
+using RawRabbit.vNext.Logging;
+using RawRabbit.vNext.Pipe;
+using Serilog;
+using Serilog.Events;
+using ILogger = Serilog.ILogger;
+using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
 
 namespace TestIT
 {
     public class Startup
     {
+        private readonly string _rootPath;
         public Startup(IHostingEnvironment env)
         {
+            _rootPath = env.ContentRootPath;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -48,6 +61,45 @@ namespace TestIT
                 // to replace the default OpenIddict entities.
                 options.UseOpenIddict();
             });
+
+            services
+                .AddRawRabbit(new RawRabbitOptions
+                {
+                    ClientConfiguration = new RawRabbitConfiguration
+                {
+                    Username = "guest",
+                    Password = "guest",
+                    VirtualHost = "/",
+                    Port = 5762,
+                    Hostnames = { "127.0.0.1" },
+                    RequestTimeout = TimeSpan.FromSeconds(10),
+                    PublishConfirmTimeout = TimeSpan.FromSeconds(10),
+                    PersistentDeliveryMode = true,
+                    TopologyRecovery = true,
+                    AutoCloseConnection = false,
+                    AutomaticRecovery = true,
+                    Exchange = new GeneralExchangeConfiguration
+                    {
+                        AutoDelete = false,
+                        Durable = true,
+                        Type = ExchangeType.Topic
+                    },
+                    Queue = new GeneralQueueConfiguration
+                    {
+                        AutoDelete = false,
+                        Durable = true,
+                        Exclusive = false
+                    },
+                    RecoveryInterval = TimeSpan.FromMinutes(1),
+                    GracefulShutdown = TimeSpan.FromMinutes(1),
+                    RouteWithGlobalId = true,
+                    Ssl = new SslOption()
+                },
+                    DependencyInjection = ioc => ioc.AddSingleton(LoggingFactory.ApplicationLogger),
+                    Plugins = p => p
+                        .UseStateMachine()
+                        .UseGlobalExecutionId()
+                });
             // Register the Identity services.
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<TestITContext>()
@@ -86,8 +138,9 @@ namespace TestIT
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TestITContext context)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            loggerFactory
+                .AddSerilog(GetConfiguredSerilogger())
+                .AddConsole(Configuration.GetSection("Logging"));
 
             if (env.IsDevelopment())
             {
@@ -159,6 +212,12 @@ namespace TestIT
             {
                 DbInitializer.Initialize(context);
             }
+        }
+        private ILogger GetConfiguredSerilogger()
+        {
+            return new LoggerConfiguration()
+                .WriteTo.File($"{_rootPath}/Logs/serilog.log", LogEventLevel.Debug)
+                .CreateLogger();
         }
     }
 }
