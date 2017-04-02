@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NSwag.Annotations;
 using RawRabbit;
 using RawRabbit.Enrichers.MessageContext.Context;
 using RawRabbit.Operations.MessageSequence;
 using TestIT.Messages;
 
-namespace TestIT.Controllers
+namespace TestIT.Web.Controllers
 {
+    [SwaggerIgnore]
     public class ValuesController : Controller
     {
         private readonly IBusClient _busClient;

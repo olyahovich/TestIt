@@ -1,6 +1,6 @@
 ﻿using System;
-using TestIT.Data;
-using TestIT.Models;
+using System.IO;
+using System.Reflection;
 using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,8 +14,6 @@ using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.WebApi.Processors.Security;
-using System.IO;
-using System.Reflection;
 using RabbitMQ.Client;
 using RawRabbit;
 using RawRabbit.Configuration;
@@ -25,10 +23,12 @@ using RawRabbit.vNext.Logging;
 using RawRabbit.vNext.Pipe;
 using Serilog;
 using Serilog.Events;
+using TestIT.Web.Data;
+using TestIT.Web.Models;
 using ILogger = Serilog.ILogger;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
 
-namespace TestIT
+namespace TestIT.Web
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System.IO;
+﻿using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
-namespace TestIT
+namespace TestIT.Web
 {
     public class Program
     {

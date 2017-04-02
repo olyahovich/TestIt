@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <SignAssembly>False</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="RawRabbit">
+      <HintPath>C:\Users\Олег\.nuget\packages\rawrabbit\2.0.0-beta5\lib\netstandard1.5\RawRabbit.dll</HintPath>
+    </Reference>
+    <Reference Include="RawRabbit.Enrichers.Attributes">
+      <HintPath>C:\Users\Олег\.nuget\packages\rawrabbit.enrichers.attributes\2.0.0-beta5\lib\netstandard1.5\RawRabbit.Enrichers.Attributes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

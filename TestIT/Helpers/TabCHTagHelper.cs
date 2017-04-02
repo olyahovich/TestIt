@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace TestIT.Helpers
+namespace TestIT.Web.Helpers
 {
     /// <summary>
     /// Tag Helper for Table columns headers to display column name

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
-namespace TestIT.Controllers
+namespace TestIT.Web.Controllers
 {
     [SwaggerIgnore]
     public class HomeController : Controller

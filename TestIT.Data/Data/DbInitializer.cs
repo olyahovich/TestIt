@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using TestIT.ViewModels;
+using TestIT.Web.ViewModels;
 
-namespace TestIT.Data
+namespace TestIT.Web.Data
 {
     public static class DbInitializer
     {

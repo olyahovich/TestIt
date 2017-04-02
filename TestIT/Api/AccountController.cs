@@ -1,13 +1,13 @@
-﻿using TestIT.Data;
-using TestIT.Models;
-using TestIT.ViewModels.Account;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
-using System.Threading.Tasks;
+using TestIT.Web.Data;
+using TestIT.Web.Models;
+using TestIT.Web.ViewModels.Account;
 
-namespace TestIT.Api
+namespace TestIT.Web.Api
 {
     [SwaggerIgnore]
     [Authorize]

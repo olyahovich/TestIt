@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestIT.Messages\TestIT.Messages.csproj" />
+    <ProjectReference Include="..\TestIT.SharedLibraries\TestIT.SharedLibraries.csproj" />
   </ItemGroup>
 
 </Project>

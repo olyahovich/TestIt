@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace TestIT.Helpers
+namespace TestIT.Web.Helpers
 {
     public static class TagHelperHelpers
    {

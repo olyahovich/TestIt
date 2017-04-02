@@ -1,9 +1,9 @@
-﻿using TestIT.Models;
-using TestIT.ViewModels;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TestIT.Web.Models;
+using TestIT.Web.ViewModels;
 
-namespace TestIT.Data
+namespace TestIT.Web.Data
 {
     public class TestITContext : IdentityDbContext<ApplicationUser>
     {

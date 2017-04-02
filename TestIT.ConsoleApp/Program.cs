@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.Enrichers.GlobalExecutionId;
 using RawRabbit.Enrichers.MessageContext;
 using RawRabbit.Enrichers.MessageContext.Context;
-using RawRabbit.vNext;
-using RawRabbit.vNext.Pipe;
-using TestIT.Messages;
+using RawRabbit.Instantiation;
+using TestIT.SharedLibraries.Messages;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
 
-namespace TestIT.ConsoleApp
+namespace TestIT.WindowsService
 {
     public class Program
     {

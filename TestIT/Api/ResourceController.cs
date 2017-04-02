@@ -1,12 +1,12 @@
-﻿using TestIT.Models;
+﻿using System.Threading.Tasks;
 using AspNet.Security.OAuth.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
-using System.Threading.Tasks;
+using TestIT.Web.Models;
 
-namespace TestIT.Api
+namespace TestIT.Web.Api
 {
     [SwaggerIgnore]
     [Route("api")]

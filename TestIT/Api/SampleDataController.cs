@@ -1,16 +1,16 @@
-﻿using TestIT.Data;
-using TestIT.Helpers;
-using TestIT.ViewModels;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TestIT.Web.Data;
+using TestIT.Web.Helpers;
+using TestIT.Web.ViewModels;
 
-namespace TestIT.Api
+namespace TestIT.Web.Api
 {
     [Authorize]
     [Route("api/[controller]")]

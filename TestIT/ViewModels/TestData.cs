@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TestIT.ViewModels
+namespace TestIT.Web.ViewModels
 {
     public class TestData
     {
@@ -12,10 +12,6 @@ namespace TestIT.ViewModels
         [StringLength(24, MinimumLength = 4)]
         [Display(Description = "Username", Name = "Username", Prompt = "Username")]
         public string Username { get; set; }
-
-        [Display(Description = "Payment Amount (in dollars)", Name = "Amount", Prompt = "Payment Amount")]
-        [DataType(DataType.Currency)]
-        public decimal Currency { get; set; }
 
         [Required, RegularExpression(@"([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})", ErrorMessage = "Please enter a valid email address.")]
         [EmailAddress]

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TestIT.Helpers
+namespace TestIT.Web.Helpers
 {
     public static class DataAnnotationsValidator
     {

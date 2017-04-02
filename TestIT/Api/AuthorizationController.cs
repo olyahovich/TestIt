@@ -4,7 +4,9 @@
  * the license and the contributors participating to this project.
  */
 
-using TestIT.Models;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
@@ -14,11 +16,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using OpenIddict.Core;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using TestIT.Web.Models;
 
-namespace TestIT.Api
+namespace TestIT.Web.Api
 {
     [SwaggerIgnore]
     public class AuthorizationController : Controller

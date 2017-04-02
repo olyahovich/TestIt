@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace TestIT.Helpers
+namespace TestIT.Web.Helpers
 {
     /// <summary>
     /// Tag helper to generate form group and form controls for data entry
