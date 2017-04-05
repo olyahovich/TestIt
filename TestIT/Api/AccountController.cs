@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using TestIT.Web.Data;
-using TestIT.Web.Models;
+using TestIT.Web.ViewModels;
 using TestIT.Web.ViewModels.Account;
 
 namespace TestIT.Web.Api

@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.2.0-preview1-24231" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestIT.Core\TestIT.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

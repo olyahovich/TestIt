@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using TestIT.Web.ViewModels;
-
-namespace TestIT.Web.Data
+﻿namespace TestIT.Data
 {
     public static class DbInitializer
     {
@@ -14,14 +11,6 @@ namespace TestIT.Web.Data
             {
                 return;   // DB has been seeded
             }
-
-            var testData = new TestData
-            {
-                Username = "JaneDoe",
-                EmailAddress = "jane.doe@example.com",
-                Password = "LetM@In!",
-                Currency = 321.45M
-            };
 
             context.TestData.Add(testData);
             context.SaveChanges();

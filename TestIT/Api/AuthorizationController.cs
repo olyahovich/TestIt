@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using OpenIddict.Core;
-using TestIT.Web.Models;
+using TestIT.Web.ViewModels;
 
 namespace TestIT.Web.Api
 {
