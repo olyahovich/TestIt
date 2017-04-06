@@ -2,7 +2,7 @@
 
 namespace TestIT.Entities
 {
-    public class UserRole : IEntityBase
+    public class RoleUserAssignment : IEntityBase
     {
         public int Id { get; set; }
         public int UserId { get; set; }

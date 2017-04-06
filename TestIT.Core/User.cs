@@ -7,7 +7,7 @@ namespace TestIT.Entities
     {
         public User()
         {
-            UserRoles = new List<UserRole>();
+            UserRoles = new List<RoleUserAssignment>();
         }
         public int Id { get; set; }
         public string Username { get; set; }
@@ -19,6 +19,6 @@ namespace TestIT.Entities
         public bool IsLocked { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<RoleUserAssignment> UserRoles { get; set; }
     }
 }
