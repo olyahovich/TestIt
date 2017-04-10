@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestIT.Entities
+﻿namespace TestIT.Entities
 {
     public class TestRunAction:IEntityBase
     {

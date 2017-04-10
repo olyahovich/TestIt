@@ -23,5 +23,6 @@ namespace TestIT.Entities
         public DateTime ModifiedOn { get; set; }
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
+        public string FullName => LastName + ", " + FirstName;
     }
 }

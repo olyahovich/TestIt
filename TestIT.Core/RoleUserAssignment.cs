@@ -2,7 +2,7 @@
 
 namespace TestIT.Entities
 {
-    public class RoleUserAssignment
+    public class RoleUserAssignment : IEntityBase
     {
         public int UserId { get; set; }
         public int RoleId { get; set; }
@@ -12,5 +12,6 @@ namespace TestIT.Entities
         public int ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
+        public int Id { get; set; }
     }
 }

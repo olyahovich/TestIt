@@ -8,7 +8,10 @@ namespace TestIT.Entities
         public Project()
         {
             TestRuns = new List<TestRun>();
+            UserAssignments = new List<UserAssignment>();
         }
+
+        public ICollection<UserAssignment> UserAssignments { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

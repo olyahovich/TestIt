@@ -2,7 +2,7 @@
 
 namespace TestIT.Entities
 {
-    class RemovedPermissionUserAssignment
+    public class RemovedPermissionUserAssignment : IEntityBase
     {
         public UserAssignment UserAssignment { get; set; }
         public int UserAssignmentId { get; set; }
@@ -12,6 +12,6 @@ namespace TestIT.Entities
         public int ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
-
+        public int Id { get; set; }
     }
 }

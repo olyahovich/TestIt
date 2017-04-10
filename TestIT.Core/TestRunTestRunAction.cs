@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestIT.Entities
+﻿namespace TestIT.Entities
 {
-    public class TestRunTestRunAction
+    public class TestRunTestRunAction : IEntityBase
     {
         public TestRunAction TestRunAction { get; set; }
         public TestRun TestRun { get; set; }
         public int TestRunActionId { get; set; }
         public int TestRunId { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestIT.Entities
+﻿namespace TestIT.Entities
 {
     public class FileType:IEntityBase
     {

@@ -30,5 +30,7 @@ namespace TestIT.Entities
         public string Description { get; set; }
         public TestRunStatus TestRunStatus { get; set; }
         public int TestRunStatusId { get; set; }
+        public TestRunResult TestRunResult { get; set; }
+        public int TestRunResultId { get; set; }
     }
 }
