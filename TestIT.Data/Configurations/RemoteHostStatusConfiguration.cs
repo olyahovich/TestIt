@@ -7,7 +7,7 @@ namespace TestIT.Data.Configurations
     {
         public RemoteHostStatusConfiguration(EntityTypeBuilder<RemoteHostStatus> builder)
         {
-
+            builder.Property(u => u.Status).IsRequired().HasMaxLength(255);
         }
     }
 }

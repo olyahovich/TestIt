@@ -7,7 +7,7 @@ namespace TestIT.Data.Configurations
     {
         public TestRunStatusConfiguration(EntityTypeBuilder<TestRunStatus> builder)
         {
-
+            builder.Property(u => u.Status).IsRequired().HasMaxLength(255);
         }
     }
 }

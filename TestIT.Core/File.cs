@@ -8,7 +8,6 @@ namespace TestIT.Entities
         public string Title { get; set; }
         public string NetworkPath { get; set; }
         public string Uri { get; set; }
-        public string ContentType { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public User User { get; set; }

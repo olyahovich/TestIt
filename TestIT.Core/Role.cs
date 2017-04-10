@@ -6,9 +6,9 @@ namespace TestIT.Entities
     {
         public Role()
         {
-            Permissions = new List<Permission>();
+            Permissions = new List<RolePermission>();
         }
-        public ICollection<Permission> Permissions { get; set; }
+        public ICollection<RolePermission> Permissions { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
         public ProjectType ProjectType { get; set; }

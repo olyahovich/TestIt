@@ -8,6 +8,7 @@ namespace TestIT.Data.Configurations
         public ProjectStatusConfiguration(EntityTypeBuilder<ProjectStatus> builder)
         {
 
+            builder.Property(u => u.Status).IsRequired().HasMaxLength(255);
         }
     }
 }

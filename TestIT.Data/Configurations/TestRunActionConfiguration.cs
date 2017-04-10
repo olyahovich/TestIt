@@ -7,7 +7,7 @@ namespace TestIT.Data.Configurations
     {
         public TestRunActionConfiguration(EntityTypeBuilder<TestRunAction> builder)
         {
-
+            builder.Property(u => u.Action).IsRequired().HasMaxLength(255);
         }
     }
 }

@@ -7,7 +7,8 @@ namespace TestIT.Data.Configurations
     {
         public ObjectConfiguration(EntityTypeBuilder<Object> builder)
         {
-
+            builder.Property(u => u.Description).HasMaxLength(1000);
+            builder.Property(u => u.Title).IsRequired().HasMaxLength(255);
         }
     }
 }

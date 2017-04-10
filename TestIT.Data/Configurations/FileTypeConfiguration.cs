@@ -7,7 +7,7 @@ namespace TestIT.Data.Configurations
     {
         public FileTypeConfiguration(EntityTypeBuilder<FileType> builder)
         {
-
+            builder.Property(u => u.Type).IsRequired().HasMaxLength(255);
         }
     }
 }

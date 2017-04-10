@@ -7,7 +7,12 @@ namespace TestIT.Data.Configurations
     {
         public RoleUserAssignmentConfiguration(EntityTypeBuilder<RoleUserAssignment> builder)
         {
-
+            builder.Property(u => u.RoleId).IsRequired();
+            builder.Property(u => u.UserId).IsRequired();
+            builder.Property(u => u.CreatedBy).IsRequired();
+            builder.Property(u => u.ModifiedBy).IsRequired();
+            builder.Property(u => u.CreatedOn);
+            builder.Property(u => u.ModifiedOn);
         }
     }
 }

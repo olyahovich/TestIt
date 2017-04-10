@@ -7,7 +7,8 @@ namespace TestIT.Data.Configurations
     {
         public PermissionConfiguration(EntityTypeBuilder<Permission> builder)
         {
-
+            builder.Property(u => u.ActionId).IsRequired();
+            builder.Property(u => u.ObjectId).IsRequired();
         }
     }
 }

@@ -3,9 +3,9 @@ using TestIT.Entities;
 
 namespace TestIT.Data.Configurations
 {
-    public class FileToRemoteHostConfiguration : EntityBaseConfiguration<FileToRemoteHost>
+    public class TestRunRemoteHostConfiguration : EntityBaseConfiguration<TestRunRemoteHost>
     {
-        public FileToRemoteHostConfiguration(EntityTypeBuilder<FileToRemoteHost> builder)
+        public TestRunRemoteHostConfiguration(EntityTypeBuilder<TestRunRemoteHost> builder)
         {
 
         }

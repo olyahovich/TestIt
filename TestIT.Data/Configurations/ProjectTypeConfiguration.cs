@@ -7,7 +7,8 @@ namespace TestIT.Data.Configurations
     {
         public ProjectTypeConfiguration(EntityTypeBuilder<ProjectType> builder)
         {
-
+            builder.Property(u => u.Type).IsRequired().HasMaxLength(255);
+            builder.Property(u => u.Type).IsRequired().HasMaxLength(255);
         }
     }
 }

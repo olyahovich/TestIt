@@ -7,14 +7,11 @@ namespace TestIT.Entities
     {
         public TestRun()
         {
-            RemotedHosts = new List<RemoteHost>();
-            TestRunActions = new List<TestRunAction>();
-            TestRunResults =  new List<TestRunResult>();
+            TestRunRemoteHosts = new List<TestRunRemoteHost>();
+            TestRunActions = new List<TestRunTestRunAction>();
         }
-
-        public ICollection<TestRunResult> TestRunResults { get; set; }
-        public ICollection<TestRunAction> TestRunActions { get; set; }
-        public ICollection<RemoteHost> RemotedHosts { get; set; }
+        public ICollection<TestRunTestRunAction> TestRunActions { get; set; }
+        public ICollection<TestRunRemoteHost> TestRunRemoteHosts { get; set; }
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }

@@ -7,7 +7,7 @@ namespace TestIT.Data.Configurations
     {
         public TestRunResultConfiguration(EntityTypeBuilder<TestRunResult> builder)
         {
-
+            builder.Property(u => u.Result).IsRequired().HasMaxLength(255);
         }
     }
 }

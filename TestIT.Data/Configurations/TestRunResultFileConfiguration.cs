@@ -7,7 +7,12 @@ namespace TestIT.Data.Configurations
     {
         public TestRunResultFileConfiguration(EntityTypeBuilder<TestRunResultFile> builder)
         {
-
+            builder.Property(u => u.RemoteHostId).IsRequired();
+            builder.Property(u => u.TestRunActionId).IsRequired();
+            builder.Property(u => u.TestRunResultId).IsRequired();
+            builder.Property(u => u.FileId).IsRequired();
+            builder.Property(u => u.CreatedOn);
+            builder.Property(u => u.ModifiedOn);
         }
     }
 }

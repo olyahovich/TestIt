@@ -7,7 +7,8 @@ namespace TestIT.Data.Configurations
     {
         public TestRunFileConfiguration(EntityTypeBuilder<TestRunFile> builder)
         {
-
+            builder.Property(u => u.TestRunId).IsRequired();
+            builder.Property(u => u.FileId).IsRequired();
         }
     }
 }

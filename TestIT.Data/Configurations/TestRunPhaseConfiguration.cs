@@ -7,7 +7,9 @@ namespace TestIT.Data.Configurations
     {
         public TestRunPhaseConfiguration(EntityTypeBuilder<TestRunPhase> builder)
         {
-
+            builder.Property(u => u.TestResultId).IsRequired();
+            builder.Property(u => u.TestRunId).IsRequired();
+            builder.Property(u => u.Phase).IsRequired().HasMaxLength(255);
         }
     }
 }

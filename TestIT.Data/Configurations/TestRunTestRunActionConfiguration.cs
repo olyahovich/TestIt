@@ -8,6 +8,7 @@ namespace TestIT.Data.Configurations
         public TestRunTestRunActionConfiguration(EntityTypeBuilder<TestRunTestRunAction> builder)
         {
             builder.Property(u => u.TestRunActionId).IsRequired();
+            builder.Property(u => u.TestRunId).IsRequired();
         }
     }
 }
