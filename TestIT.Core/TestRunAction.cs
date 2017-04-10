@@ -4,7 +4,9 @@ using System.Text;
 
 namespace TestIT.Entities
 {
-    class TestRunAction
+    public class TestRunAction:IEntityBase
     {
+        public int Id { get; set; }
+        public string Action { get; set; }
     }
 }

@@ -7,16 +7,14 @@ namespace TestIT.Entities
     {
         public int Id { get; set; }
         public string HostName { get; set; }
-        public int Port { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
-        public byte[] IpAddressBytes { get; set; }
-        public IPAddress IpAddress
-        {
-            get { return new IPAddress(IpAddressBytes); }
-            set { IpAddressBytes = value.GetAddressBytes(); }
-        }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public int ModifiedBy { get; set; }
+        public User User { get; set; }
+        public RemoteHostStatus RemoteHostStatus { get; set; }
+        public int StatusId { get; set; }
+        public RemoteHostConfiguration RemoteHostConfiguration { get; set; }
+        public int ConfigurationId { get; set; }
     }
 }

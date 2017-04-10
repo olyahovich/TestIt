@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestIT.Entities
+﻿namespace TestIT.Entities
 {
-    class Object
+    public class Object:IEntityBase
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
-  
-    <PropertyGroup>
+
+  <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
@@ -68,6 +68,6 @@
     <Folder Include="ViewModels\Default\" />
     <Folder Include="ViewModels\Event\" />
     <Folder Include="ViewModels\Shared\" />
-  </ItemGroup>        
-  
+  </ItemGroup>
+
 </Project>

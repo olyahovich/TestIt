@@ -4,7 +4,9 @@ using System.Text;
 
 namespace TestIT.Entities
 {
-    class ProjectType
+    public class ProjectType:IEntityBase
     {
+        public int Id { get; set; }
+        public string Type { get; set; }
     }
 }

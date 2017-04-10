@@ -9,12 +9,12 @@ namespace TestIT.Entities
         public string NetworkPath { get; set; }
         public string Uri { get; set; }
         public string ContentType { get; set; }
-        public string Verson { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
         public User User { get; set; }
-        public int UserId { get; set; }
+        public int CreatedBy { get; set; }
+        public int ModifiedBy { get; set; }
         public FileType FileType { get; set; }
-        public int FileTypeID { get; set; }
+        public int FileTypeId { get; set; }
     }
 }
