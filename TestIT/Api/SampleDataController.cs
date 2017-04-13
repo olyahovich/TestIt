@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TestIT.Web.Data;
+using TestIT.Data;
+using TestIT.Entities;
 using TestIT.Web.Helpers;
 using TestIT.Web.ViewModels;
 
@@ -34,7 +35,7 @@ namespace TestIT.Web.Api
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var testData = await _context.TestData
+            var testData = await _context.TestDatas
                                    .DefaultIfEmpty(null as TestData)
                                    .SingleOrDefaultAsync(a => a.Id == id);
 
@@ -50,7 +51,7 @@ namespace TestIT.Web.Api
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var testData = _context.TestData;
+            var testData = _context.TestDatas;
 
             if (!testData.Any())
             {
@@ -97,7 +98,7 @@ namespace TestIT.Web.Api
                 return Json(BadRequest(results));
             }
 
-            bool recordExists = _context.TestData.Where(a => a.Id == value.Id).Any();
+            bool recordExists = _context.TestDatas.Where(a => a.Id == value.Id).Any();
 
             if (!recordExists)
             {
@@ -121,7 +122,7 @@ namespace TestIT.Web.Api
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var testData = await _context.TestData
+            var testData = await _context.TestDatas
                                          .AsNoTracking()
                                          .SingleOrDefaultAsync(m => m.Id == id);
 
@@ -132,7 +133,7 @@ namespace TestIT.Web.Api
 
             try
             {
-                _context.TestData.Remove(testData);
+                _context.TestDatas.Remove(testData);
                 await _context.SaveChangesAsync();
                 return Json(Ok("deleted"));
             }

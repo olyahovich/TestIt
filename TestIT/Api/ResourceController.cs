@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
+using TestIT.Data;
 using TestIT.Web.ViewModels;
 
 namespace TestIT.Web.Api

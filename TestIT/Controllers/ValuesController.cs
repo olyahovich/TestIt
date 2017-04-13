@@ -7,7 +7,7 @@ using NSwag.Annotations;
 using RawRabbit;
 using RawRabbit.Enrichers.MessageContext.Context;
 using RawRabbit.Operations.MessageSequence;
-using TestIT.Messages;
+using TestIT.SharedLibraries.Messages;
 
 namespace TestIT.Web.Controllers
 {

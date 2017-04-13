@@ -70,5 +70,9 @@
     <Folder Include="ViewModels\Event\" />
     <Folder Include="ViewModels\Shared\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestIT.Data\TestIT.Data.csproj" />
+    <ProjectReference Include="..\TestIT.SharedLibraries\TestIT.SharedLibraries.csproj" />
+  </ItemGroup>
 
 </Project>

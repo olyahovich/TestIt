@@ -7,7 +7,8 @@ namespace TestIT.Data.Configurations
     {
         public TestRunRemoteHostConfiguration(EntityTypeBuilder<TestRunRemoteHost> builder)
         {
-
+            builder.Property(u => u.TestRunId).IsRequired();
+            builder.Property(u => u.RemoteHostId).IsRequired();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TestIT.Web.ViewModels
+namespace TestIT.Entities
 {
     public class TestData
     {

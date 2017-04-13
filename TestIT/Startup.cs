@@ -23,7 +23,7 @@ using RawRabbit.vNext.Logging;
 using RawRabbit.vNext.Pipe;
 using Serilog;
 using Serilog.Events;
-using TestIT.Web.Data;
+using TestIT.Data;
 using TestIT.Web.ViewModels;
 using ILogger = Serilog.ILogger;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;

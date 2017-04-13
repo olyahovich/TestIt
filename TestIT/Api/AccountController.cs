@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
-using TestIT.Web.Data;
+using TestIT.Data;
 using TestIT.Web.ViewModels;
 using TestIT.Web.ViewModels.Account;
 
