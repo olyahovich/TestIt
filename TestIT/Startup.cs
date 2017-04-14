@@ -54,12 +54,7 @@ namespace TestIT.Web
 
             services.AddDbContext<TestITContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-
-                // Register the entity sets needed by OpenIddict.
-                // Note: use the generic overload if you need
-                // to replace the default OpenIddict entities.
-                options.UseOpenIddict();
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("TestIT.Web"));
             });
 
             services

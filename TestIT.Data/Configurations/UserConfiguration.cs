@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class UserConfiguration:EntityBaseConfiguration<User>
     {
-        public UserConfiguration(EntityTypeBuilder<User> builder)
+        public new void Configure(EntityTypeBuilder<User> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.Username).IsRequired().HasMaxLength(255);
             builder.Property(u => u.FirstName).IsRequired().HasMaxLength(255);
             builder.Property(u => u.LastName).IsRequired().HasMaxLength(255);

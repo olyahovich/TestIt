@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class FileConfiguration : EntityBaseConfiguration<File>
     {
-        public FileConfiguration(EntityTypeBuilder<File> builder)
+        public new void Configure(EntityTypeBuilder<File> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.FileTypeId).IsRequired();
             builder.Property(u => u.Uri).HasMaxLength(2000).IsUnicode();
             builder.Property(u => u.NetworkPath).IsRequired().HasMaxLength(1000);

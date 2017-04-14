@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class TestRunActionConfiguration : EntityBaseConfiguration<TestRunAction>
     {
-        public TestRunActionConfiguration(EntityTypeBuilder<TestRunAction> builder)
+        public new void Configure(EntityTypeBuilder<TestRunAction> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.Action).IsRequired().HasMaxLength(255);
         }
     }

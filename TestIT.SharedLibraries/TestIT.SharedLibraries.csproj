@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RuntimeFrameworkVersion>2.0.0-preview1-001915-00</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion>2.0.0-preview1-001978-00</RuntimeFrameworkVersion>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Libuv" Version="1.10.0-preview1-22038" />
+    <PackageReference Include="RawRabbit.Enrichers.Attributes" Version="2.0.0-beta5" />
+    <PackageReference Include="System.Threading" Version="4.4.0-beta-24913-02" />
   </ItemGroup>
 
   <ItemGroup>

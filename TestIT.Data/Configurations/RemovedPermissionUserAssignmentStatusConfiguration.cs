@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class RemovedPermissionUserAssignmentStatusConfiguration : EntityBaseConfiguration<RemovedPermissionUserAssignment>
     {
-        public RemovedPermissionUserAssignmentStatusConfiguration(EntityTypeBuilder<RemovedPermissionUserAssignment> builder)
+        public new void Configure(EntityTypeBuilder<RemovedPermissionUserAssignment> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.PermissionId).IsRequired();
             builder.Property(u => u.UserAssignmentId).IsRequired();
             builder.Property(u => u.CreatedBy).IsRequired();

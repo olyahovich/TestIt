@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class PermissionConfiguration : EntityBaseConfiguration<Permission>
     {
-        public PermissionConfiguration(EntityTypeBuilder<Permission> builder)
+        public new void Configure(EntityTypeBuilder<Permission> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.ActionId).IsRequired();
             builder.Property(u => u.ObjectId).IsRequired();
         }

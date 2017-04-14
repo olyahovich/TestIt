@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class TestRunFileConfiguration : EntityBaseConfiguration<TestRunFile>
     {
-        public TestRunFileConfiguration(EntityTypeBuilder<TestRunFile> builder)
+        public new void Configure(EntityTypeBuilder<TestRunFile> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.TestRunId).IsRequired();
             builder.Property(u => u.FileId).IsRequired();
         }

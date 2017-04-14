@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class TestRunConfiguration : EntityBaseConfiguration<TestRun>
     {
-        public TestRunConfiguration(EntityTypeBuilder<TestRun> builder)
+        public new void Configure(EntityTypeBuilder<TestRun> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.ProjectId).IsRequired();
             builder.Property(u => u.AssignedTo).IsRequired();
             builder.Property(u => u.Description).HasMaxLength(1000);

@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class TestRunResultFileConfiguration : EntityBaseConfiguration<TestRunResultFile>
     {
-        public TestRunResultFileConfiguration(EntityTypeBuilder<TestRunResultFile> builder)
+        public new void Configure(EntityTypeBuilder<TestRunResultFile> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.RemoteHostId).IsRequired();
             builder.Property(u => u.TestRunActionId).IsRequired();
             builder.Property(u => u.TestRunResultId).IsRequired();

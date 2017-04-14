@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 
 namespace TestIT.Entities
 {
@@ -8,12 +7,9 @@ namespace TestIT.Entities
         public int Id { get; set; }
         public string OperationSystem { get; set; }
         public int Port { get; set; }
-        public byte[] IpAddressBytes { get; set; }
-        public IPAddress IpAddress
-        {
-            get { return new IPAddress(IpAddressBytes); }
-            set { IpAddressBytes = value.GetAddressBytes(); }
-        }
+        public string HostName { get; set; }
+        public string Ipv4 { get; set; }
+        public string Ipv6 { get; set; }
         public string UserName { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }

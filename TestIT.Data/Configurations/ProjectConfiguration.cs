@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class ProjectConfiguration : EntityBaseConfiguration<Project>
     {
-        public ProjectConfiguration(EntityTypeBuilder<Project> builder)
+        public new void Configure(EntityTypeBuilder<Project> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.ProjectTypeId).IsRequired();
             builder.Property(u => u.ProjectStatusId).IsRequired();
             builder.Property(u => u.Description).IsRequired().HasMaxLength(1000);

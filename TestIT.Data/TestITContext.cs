@@ -39,11 +39,37 @@ namespace TestIT.Data
         public DbSet<TestData> TestDatas { get; set; }
         public TestITContext(DbContextOptions<TestITContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ActionConfiguration());
+            modelBuilder.ApplyConfiguration(new FileConfiguration());
+            modelBuilder.ApplyConfiguration(new FileTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ObjectConfiguration());
+            modelBuilder.ApplyConfiguration(new PermissionConfiguration());
+            modelBuilder.ApplyConfiguration(new ProjectConfiguration());
+            modelBuilder.ApplyConfiguration(new ProjectStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new ProjectTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new Data.Configurations.RemoteHostConfiguration());
+            modelBuilder.ApplyConfiguration(new RemoteHostConfigurationConfiguration());
+            modelBuilder.ApplyConfiguration(new RemoteHostStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new RemovedPermissionUserAssignmentStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleUserAssignmentConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunActionConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunFileConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunPhaseConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunRemoteHostConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunResultConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunResultFileConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new TestRunTestRunActionConfiguration());
+            modelBuilder.ApplyConfiguration(new UserAssignmentConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

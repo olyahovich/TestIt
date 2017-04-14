@@ -5,8 +5,9 @@ namespace TestIT.Data.Configurations
 {
     public class UserAssignmentConfiguration : EntityBaseConfiguration<UserAssignment>
     {
-        public UserAssignmentConfiguration(EntityTypeBuilder<UserAssignment> builder)
+        public new void Configure(EntityTypeBuilder<UserAssignment> builder)
         {
+            base.Configure(builder);
             builder.Property(u => u.ProjectId).IsRequired();
             builder.Property(u => u.UserId).IsRequired();
             builder.Property(u => u.CreatedBy).IsRequired();
