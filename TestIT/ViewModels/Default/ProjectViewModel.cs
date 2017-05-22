@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace TestIT.Entities
+
+namespace TestIT.Web.ViewModels.Default
 {
-    public class TestData
+   public class ProjectViewModel
     {
-        [Display(Description = "Record #")]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(24, MinimumLength = 4)]
-        [Display(Description = "Username", Name = "Username", Prompt = "Username")]
-        public string Username { get; set; }
+        [Display(Description = "Project Title", Name = "Project Title", Prompt = "Title")]
+        public string Title { get; set; }
 
         [Display(Description = "Payment Amount (in dollars)", Name = "Amount", Prompt = "Payment Amount")]
         [DataType(DataType.Currency)]
@@ -36,5 +32,6 @@ namespace TestIT.Entities
         {
             throw new NotImplementedException();
         }
+
     }
 }

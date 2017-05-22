@@ -1,4 +1,6 @@
-﻿namespace TestIT.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TestIT.Entities
 {
     public class TestRunFile : IEntityBase
     {
@@ -6,6 +8,8 @@
         public int FileId { get; set; }
         public TestRun TestRun { get; set; }
         public int TestRunId { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
     }
 }

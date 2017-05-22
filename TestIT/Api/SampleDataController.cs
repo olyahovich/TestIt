@@ -17,9 +17,9 @@ namespace TestIT.Web.Api
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
-        private readonly TestITContext _context;
+        private readonly TestItContext _context;
 
-        public SampleDataController(TestITContext context)
+        public SampleDataController(TestItContext context)
         {
             _context = context;
         }

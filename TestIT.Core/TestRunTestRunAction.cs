@@ -1,4 +1,6 @@
-﻿namespace TestIT.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TestIT.Entities
 {
     public class TestRunTestRunAction : IEntityBase
     {
@@ -6,6 +8,8 @@
         public TestRun TestRun { get; set; }
         public int TestRunActionId { get; set; }
         public int TestRunId { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
     }
 }

@@ -1,10 +1,4 @@
-﻿/*
- * Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
- * See https://github.com/openiddict/openiddict-core for more information concerning
- * the license and the contributors participating to this project.
- */
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNet.Security.OpenIdConnect.Extensions;
@@ -17,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using OpenIddict.Core;
 using TestIT.Data;
-using TestIT.Web.ViewModels;
 
 namespace TestIT.Web.Api
 {
@@ -33,6 +26,21 @@ namespace TestIT.Web.Api
         {
             _signInManager = signInManager;
             _userManager = userManager;
+        }
+
+        [HttpGet("~/connect/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            // Ask ASP.NET Core Identity to delete the local and external cookies created
+            // when the user agent is redirected from the external identity provider
+            // after a successful authentication flow (e.g Google or Facebook).
+            // await _signInManager.SignOutAsync();
+
+            // Returning a SignOutResult will ask OpenIddict to redirect the user agent
+            // to the post_logout_redirect_uri specified by the client application.
+            // return SignOut(OpenIdConnectServerDefaults.);
+
+            return Json(Ok("logged out"));
         }
 
         [HttpPost("~/connect/token"), Produces("application/json")]

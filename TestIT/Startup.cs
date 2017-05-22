@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using AspNet.Security.OpenIdConnect.Primitives;
+﻿using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -23,10 +20,14 @@ using RawRabbit.vNext.Logging;
 using RawRabbit.vNext.Pipe;
 using Serilog;
 using Serilog.Events;
+using StaticDotNet.EntityFrameworkCore.ModelConfiguration;
+using System;
+using System.IO;
+using System.Reflection;
 using TestIT.Data;
-using TestIT.Web.ViewModels;
-using ILogger = Serilog.ILogger;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
+using ILogger = Serilog.ILogger;
+
 
 namespace TestIT.Web
 {
@@ -52,10 +53,13 @@ namespace TestIT.Web
             // Add framework services.
             services.AddMvc();
 
-            services.AddDbContext<TestITContext>(options =>
+            services.AddDbContext<TestItContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("TestIT.Web"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("TestIT.Web"))
+                       .AddEntityTypeConfigurations(typeof(Startup).GetTypeInfo().Assembly);
+                options.UseOpenIddict();
             });
+            
 
             services
                 .AddRawRabbit(new RawRabbitOptions
@@ -97,7 +101,7 @@ namespace TestIT.Web
                 });
             // Register the Identity services.
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<TestITContext>()
+                .AddEntityFrameworkStores<TestItContext>()
                 .AddDefaultTokenProviders();
 
             // Configure Identity to use the same JWT claims as OpenIddict instead
@@ -111,27 +115,43 @@ namespace TestIT.Web
             });
 
             // Register the OpenIddict services.
-            services.AddOpenIddict()
+            services.AddOpenIddict(options =>
+            {
                 // Register the Entity Framework stores.
-                .AddEntityFrameworkCoreStores<TestITContext>()
+                options.AddEntityFrameworkCoreStores<TestItContext>();
 
                 // Register the ASP.NET Core MVC binder used by OpenIddict.
                 // Note: if you don't call this method, you won't be able to
                 // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
-                .AddMvcBinders()
+                options.AddMvcBinders();
 
-                // Enable the token endpoint.
-                .EnableTokenEndpoint("/connect/token")
+                // Enable the authorization, logout, token and userinfo endpoints.
+                options.EnableAuthorizationEndpoint("/connect/authorize")
+                       .EnableLogoutEndpoint("/connect/logout")
+                       .EnableTokenEndpoint("/connect/token")
+                       .EnableUserinfoEndpoint("/api/userinfo");
 
-                // Enable the password flow.
-                .AllowPasswordFlow()
+                // Note: the Mvc.Client sample only uses the authorization code flow but you can enable
+                // the other flows if you need to support implicit, password or client credentials.
+                options.AllowPasswordFlow();
+
+                // When request caching is enabled, authorization and logout requests
+                // are stored in the distributed cache by OpenIddict and the user agent
+                // is redirected to the same page with a single parameter (request_id).
+                // This allows flowing large OpenID Connect requests even when using
+                // an external authentication provider like Google, Facebook or Twitter.
+                // options.EnableRequestCaching();
 
                 // During development, you can disable the HTTPS requirement.
-                .DisableHttpsRequirement();
+                //if (CurrentEnvironment.IsDevelopment())
+                {
+                    options.DisableHttpsRequirement();
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TestITContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TestItContext context)
         {
             loggerFactory
                 .AddSerilog(GetConfiguredSerilogger())

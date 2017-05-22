@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
     public class RemoteHost: IEntityBase
     {
+        [Key]
+        [Required]
         public int Id { get; set; }
         public string HostName { get; set; }
         public DateTime CreatedOn { get; set; }

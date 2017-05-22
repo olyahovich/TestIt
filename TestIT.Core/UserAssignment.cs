@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
     public class UserAssignment:IEntityBase
     {
+        [Key]
+        [Required]
         public int Id { get; set; }
         public User User { get; set; }
         public Project Project { get; set; }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
     public class TestRunResultFile:IEntityBase
     {
+        [Key]
+        [Required]
         public int Id { get; set; }
         public RemoteHost RemoteHost { get; set; }
         public int RemoteHostId { get; set; }

@@ -5,7 +5,7 @@ namespace TestIT.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(TestITContext context)
+        public static void Initialize(TestItContext context)
         {
             context.Database.EnsureCreated();
 

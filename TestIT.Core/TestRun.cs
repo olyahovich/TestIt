@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
@@ -12,6 +13,8 @@ namespace TestIT.Entities
         }
         public ICollection<TestRunTestRunAction> TestRunActions { get; set; }
         public ICollection<TestRunRemoteHost> TestRunRemoteHosts { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }

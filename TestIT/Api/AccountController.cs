@@ -14,12 +14,12 @@ namespace TestIT.Web.Api
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly TestITContext _applicationDbContext;
+        private readonly TestItContext _applicationDbContext;
         private static bool _databaseChecked;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
-            TestITContext applicationDbContext)
+            TestItContext applicationDbContext)
         {
             _userManager = userManager;
             _applicationDbContext = applicationDbContext;

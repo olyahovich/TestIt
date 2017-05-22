@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
     public class RemoteHostConfiguration:IEntityBase
     {
+        [Key]
+        [Required]
         public int Id { get; set; }
         public string OperationSystem { get; set; }
         public int Port { get; set; }

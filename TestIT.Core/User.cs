@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
@@ -11,6 +12,8 @@ namespace TestIT.Entities
         }
 
         public ICollection<UserAssignment> UserAssignments { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }

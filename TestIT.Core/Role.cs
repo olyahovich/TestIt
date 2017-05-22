@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
@@ -9,6 +10,8 @@ namespace TestIT.Entities
             Permissions = new List<RolePermission>();
         }
         public ICollection<RolePermission> Permissions { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
         public string Title { get; set; }
         public ProjectType ProjectType { get; set; }

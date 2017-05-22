@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestIT.Entities
 {
@@ -12,6 +13,8 @@ namespace TestIT.Entities
         public int ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
+        [Key]
+        [Required]
         public int Id { get; set; }
     }
 }
