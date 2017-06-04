@@ -9,12 +9,13 @@ import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import './rxjs-operators';
 
 // enableProdMode();
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
+    imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,

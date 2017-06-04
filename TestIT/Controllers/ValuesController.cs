@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSwag.Annotations;
@@ -25,6 +26,7 @@ namespace TestIT.Web.Controllers
             _random = new Random();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("api/values")]
         public async Task<IActionResult> GetAsync()
@@ -58,6 +60,7 @@ namespace TestIT.Web.Controllers
             return Ok(valueSequence.Task.Result.Values);
         }
 
+        [Authorize]
         [HttpGet("api/values/{id}")]
         public async Task<string> GetAsync(int id)
         {

@@ -18,7 +18,7 @@
                     <a class="nav-link" (click)="setTitle('About - TestIT')" routerLink="/about">About</a>
                 </li>
                 <li [hidden]="!isLoggedIn()">
-                    <a class="nav-link" href="/swagger">NSwag</a>
+                    <a class="nav-link" href="swagger">API</a>
                 </li>
                 <li>
                     <a class="nav-link" (click)="setTitle('Contact - TestIT')" routerLink="/contact">Contacts</a>
@@ -31,7 +31,9 @@
 
 <div class="container-fluid body-content">
 
-    <router-outlet></router-outlet>
+    <div class="container-fluid">
+     <router-outlet></router-outlet>
+    </div>
 
     @{
         string razorServerSideData = "ASP.Net Core";

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace TestIT.Entities
-{
-    public class User : IEntityBase
+ namespace TestIT.Entities
+{ 
+        // Add profile data for application users by adding properties to the ApplicationUser class
+        public class User : IdentityUser, IEntityBase
     {
         public User()
         {

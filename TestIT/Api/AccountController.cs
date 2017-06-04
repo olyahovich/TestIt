@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using TestIT.Data;
+using TestIT.Entities;
 using TestIT.Web.ViewModels;
 using TestIT.Web.ViewModels.Account;
 
@@ -13,12 +14,12 @@ namespace TestIT.Web.Api
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly TestItContext _applicationDbContext;
         private static bool _databaseChecked;
 
         public AccountController(
-            UserManager<ApplicationUser> userManager,
+            UserManager<User> userManager,
             TestItContext applicationDbContext)
         {
             _userManager = userManager;
@@ -33,7 +34,7 @@ namespace TestIT.Web.Api
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User() { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

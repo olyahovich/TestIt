@@ -11,25 +11,26 @@ using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using OpenIddict.Core;
 using TestIT.Data;
+using TestIT.Entities;
 
 namespace TestIT.Web.Api
 {
     [SwaggerIgnore]
     public class AuthorizationController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
         public AuthorizationController(
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
+            SignInManager<User> signInManager,
+            UserManager<User> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
         }
 
         [HttpGet("~/connect/logout")]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
             // Ask ASP.NET Core Identity to delete the local and external cookies created
             // when the user agent is redirected from the external identity provider
@@ -125,7 +126,7 @@ namespace TestIT.Web.Api
             });
         }
 
-        private async Task<AuthenticationTicket> CreateTicketAsync(OpenIdConnectRequest request, ApplicationUser user)
+        private async Task<AuthenticationTicket> CreateTicketAsync(OpenIdConnectRequest request, User user)
         {
             // Create a new ClaimsPrincipal containing the claims that
             // will be used to create an id_token, a token or a code.

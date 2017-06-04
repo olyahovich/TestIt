@@ -33,16 +33,18 @@ namespace TestIT.Web
 {
     public class Startup
     {
-        private readonly string _rootPath;
+        private IHostingEnvironment CurrentEnvironment { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
-            _rootPath = env.ContentRootPath;
+            CurrentEnvironment = env;
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+                            .SetBasePath(CurrentEnvironment.ContentRootPath)
+                            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                            .AddJsonFile($"appsettings.{CurrentEnvironment.EnvironmentName}.json", optional: true)
+                            .AddEnvironmentVariables();
             Configuration = builder.Build();
+
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -143,7 +145,7 @@ namespace TestIT.Web
                 // options.EnableRequestCaching();
 
                 // During development, you can disable the HTTPS requirement.
-                //if (CurrentEnvironment.IsDevelopment())
+                if (CurrentEnvironment.IsDevelopment())
                 {
                     options.DisableHttpsRequirement();
                 }
@@ -153,10 +155,9 @@ namespace TestIT.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TestItContext context)
         {
-            loggerFactory
-                .AddSerilog(GetConfiguredSerilogger())
-                .AddConsole(Configuration.GetSection("Logging"));
-
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -190,7 +191,7 @@ namespace TestIT.Web
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "node_modules")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(CurrentEnvironment.ContentRootPath, "node_modules")),
                 RequestPath = "/node_modules"
             });
 
@@ -223,16 +224,11 @@ namespace TestIT.Web
 
             });
 
-            if (env.IsDevelopment())
+             if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }
-        }
-        private ILogger GetConfiguredSerilogger()
-        {
-            return new LoggerConfiguration()
-                .WriteTo.File($"{_rootPath}/Logs/serilog.log", LogEventLevel.Debug)
-                .CreateLogger();
+
         }
     }
 }

@@ -38,7 +38,7 @@ namespace TestIT.Data
 
         public TestItContext(DbContextOptions<TestItContext> options) : base(options)
         {
-            Database.Migrate();
+
         }
         
     }
