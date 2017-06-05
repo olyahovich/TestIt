@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'register',
-    templateUrl: '/partial/changePasswordComponent'
+   templateUrl: 'partial/changePasswordComponent'
 })
 
 export class ChangePasswordComponent {

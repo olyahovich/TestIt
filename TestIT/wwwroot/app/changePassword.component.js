@@ -61,7 +61,7 @@ var ChangePasswordComponent = (function () {
 ChangePasswordComponent = __decorate([
     core_1.Component({
         selector: 'register',
-        templateUrl: '/partial/changePasswordComponent'
+        templateUrl: 'partial/changePasswordComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ngx_toastr_1.ToastrService])
 ], ChangePasswordComponent);

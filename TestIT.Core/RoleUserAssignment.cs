@@ -5,12 +5,12 @@ namespace TestIT.Entities
 {
     public class RoleUserAssignment : IEntityBase
     {
-        public int UserId { get; set; }
-        public int RoleId { get; set; }
+        public string UserId { get; set; }
+        public string RoleId { get; set; }
         public Role Role { get; set; }
         public User User { get; set; }
-        public int CreatedBy { get; set; }
-        public int ModifiedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         [Key]

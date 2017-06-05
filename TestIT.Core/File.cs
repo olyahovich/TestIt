@@ -14,8 +14,8 @@ namespace TestIT.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public User User { get; set; }
-        public int CreatedBy { get; set; }
-        public int ModifiedBy { get; set; }
+        public string UserId { get; set; }
+        public string ModifiedBy { get; set; }
         public FileType FileType { get; set; }
         public int FileTypeId { get; set; }
     }

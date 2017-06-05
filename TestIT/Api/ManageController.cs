@@ -6,15 +6,17 @@ using NSwag.Annotations;
 using System.Threading.Tasks;
 using TestIT.Web.ViewModels.ManageViewModels;
 using TestIT.Data;
+using TestIT.Entities;
+
 namespace TestIt.Web.Api
 {
     [SwaggerIgnore]
     [Authorize]
     public class ManageController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public ManageController(UserManager<ApplicationUser> userManager)
+        public ManageController(UserManager<User> userManager)
         {
             _userManager = userManager;
         }

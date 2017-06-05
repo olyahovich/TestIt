@@ -10,7 +10,7 @@ namespace TestIT.Data.Configurations
             base.Configure(builder);
             builder.Property(u => u.PermissionId).IsRequired();
             builder.Property(u => u.UserAssignmentId).IsRequired();
-            builder.Property(u => u.CreatedBy).IsRequired();
+            builder.Property(u => u.UserId).IsRequired();
             builder.Property(u => u.ModifiedBy).IsRequired();
             builder.Property(u => u.CreatedOn).IsRequired(); ;
             builder.Property(u => u.ModifiedOn).IsRequired(); ;

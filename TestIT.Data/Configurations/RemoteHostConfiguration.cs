@@ -11,7 +11,7 @@ namespace TestIT.Data.Configurations
             builder.Property(u => u.StatusId).IsRequired();
             builder.Property(u => u.HostName).IsRequired().HasMaxLength(255);
             builder.Property(u => u.ConfigurationId).IsRequired();
-            builder.Property(u => u.CreatedBy).IsRequired();
+            builder.Property(u => u.UserId).IsRequired();
             builder.Property(u => u.ModifiedBy).IsRequired();
             builder.Property(u => u.CreatedOn);
             builder.Property(u => u.ModifiedOn);

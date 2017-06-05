@@ -3,7 +3,7 @@ import { Title }     from '@angular/platform-browser';
 
 @Component({
     selector: 'register',
-    templateUrl: '/partial/manageComponent'
+   templateUrl: 'partial/manageComponent'
 })
 
 export class ManageComponent {

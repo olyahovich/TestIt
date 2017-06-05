@@ -18,7 +18,7 @@ namespace TestIT.Data.Configurations
             builder.Property(u => u.TestRunStatusId).IsRequired();
             builder.Property(u => u.Title).IsRequired().HasMaxLength(255);
             builder.Property(u => u.CompletedOn);
-            builder.Property(u => u.CreatedBy).IsRequired();
+            builder.Property(u => u.UserId).IsRequired();
             builder.Property(u => u.ModifiedBy).IsRequired();
             builder.Property(u => u.CreatedOn);
             builder.Property(u => u.ModifiedOn);

@@ -19,10 +19,10 @@ namespace TestIT.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public DateTime CompletedOn { get; set; }
-        public int CreatedBy { get; set; }
-        public int ModifiedBy { get; set; }
-        public int CompletedBy { get; set; }
-        public int AssignedTo { get; set; }
+        public string UserId { get; set; }
+        public string ModifiedBy { get; set; }
+        public string CompletedBy { get; set; }
+        public string AssignedTo { get; set; }
         public User User { get; set; }
         public virtual Project Project { get; set; }
         public int ProjectId { get; set; }

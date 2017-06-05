@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var animations_1 = require("@angular/platform-browser/animations");
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_routing_1 = require("./app.routing");
@@ -17,7 +18,6 @@ var sampleData_service_1 = require("./services/sampleData.service");
 var auth_service_1 = require("./security/auth.service");
 var auth_guard_service_1 = require("./security/auth-guard.service");
 var ngx_toastr_1 = require("ngx-toastr");
-var animations_1 = require("@angular/platform-browser/animations");
 require("./rxjs-operators");
 // enableProdMode();
 var AppModule = (function () {
@@ -31,7 +31,7 @@ AppModule = __decorate([
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
         providers: [sampleData_service_1.SampleDataService,
             auth_service_1.AuthService,
-            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
+            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/testit' }],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

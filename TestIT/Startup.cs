@@ -25,6 +25,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using TestIT.Data;
+using TestIT.Entities;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
 using ILogger = Serilog.ILogger;
 
@@ -102,7 +103,7 @@ namespace TestIT.Web
                         .UseGlobalExecutionId()
                 });
             // Register the Identity services.
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TestItContext>()
                 .AddDefaultTokenProviders();
 

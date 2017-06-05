@@ -5,7 +5,7 @@ using RemoteHostConfiguration = TestIT.Entities.RemoteHostConfiguration;
 
 namespace TestIT.Data
 {
-    public class TestItContext : IdentityDbContext<ApplicationUser>
+    public class TestItContext : IdentityDbContext<User>
     {
         public DbSet<Action> Actions { get; set; }
         public DbSet<Error> Errors { get; set; }

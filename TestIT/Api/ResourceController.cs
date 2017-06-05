@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using TestIT.Data;
+using TestIT.Entities;
 using TestIT.Web.ViewModels;
 
 namespace TestIT.Web.Api
@@ -13,9 +14,9 @@ namespace TestIT.Web.Api
     [Route("api")]
     public class ResourceController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public ResourceController(UserManager<ApplicationUser> userManager)
+        public ResourceController(UserManager<User> userManager)
         {
             _userManager = userManager;
         }

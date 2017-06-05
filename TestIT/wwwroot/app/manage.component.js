@@ -23,7 +23,7 @@ var ManageComponent = (function () {
 ManageComponent = __decorate([
     core_1.Component({
         selector: 'register',
-        templateUrl: '/partial/manageComponent'
+        templateUrl: 'partial/manageComponent'
     }),
     __metadata("design:paramtypes", [platform_browser_1.Title])
 ], ManageComponent);

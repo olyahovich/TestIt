@@ -6,8 +6,6 @@
     System.config({
         paths: {
             // paths serve as alias
-            'rxjs': 'npm:rxjs',
-
             'npm:': 'node_modules/'
         },
         // map tells the System loader where to look for things
@@ -27,7 +25,7 @@
             '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-
+            'rxjs': 'npm:rxjs',
             // other libraries
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js'

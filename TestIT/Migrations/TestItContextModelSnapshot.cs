@@ -24,6 +24,9 @@ namespace TestIT.Web.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Name")
                         .HasMaxLength(256);
 
@@ -37,6 +40,8 @@ namespace TestIT.Web.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -200,56 +205,6 @@ namespace TestIT.Web.Migrations
                     b.ToTable("OpenIddictTokens");
                 });
 
-            modelBuilder.Entity("TestIT.Data.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers");
-                });
-
             modelBuilder.Entity("TestIT.Entities.Action", b =>
                 {
                     b.Property<int>("Id")
@@ -285,13 +240,11 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<int>("FileTypeId");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
@@ -301,7 +254,7 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("Uri");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -361,17 +314,15 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CompletedBy");
+                    b.Property<string>("CompletedBy");
 
                     b.Property<DateTime>("CompletedOn");
-
-                    b.Property<int>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
@@ -381,7 +332,7 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -425,13 +376,11 @@ namespace TestIT.Web.Migrations
 
                     b.Property<int>("ConfigurationId");
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("HostName");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
@@ -441,7 +390,7 @@ namespace TestIT.Web.Migrations
 
                     b.Property<int>("StatusId");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -459,8 +408,6 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("HostName");
@@ -469,7 +416,7 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("Ipv6");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
@@ -481,9 +428,13 @@ namespace TestIT.Web.Migrations
 
                     b.Property<int>("Port");
 
+                    b.Property<string>("UserId");
+
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("RemoteHostConfigurations");
                 });
@@ -505,11 +456,9 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
@@ -517,29 +466,17 @@ namespace TestIT.Web.Migrations
 
                     b.Property<int>("UserAssignmentId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PermissionId");
 
                     b.HasIndex("UserAssignmentId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("RemovedPermissionUserAssignments");
-                });
-
-            modelBuilder.Entity("TestIT.Entities.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ProjectTypeId");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectTypeId");
-
-                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("TestIT.Entities.RolePermission", b =>
@@ -547,23 +484,25 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
                     b.Property<int>("PermissionId");
 
-                    b.Property<int>("RoleId");
+                    b.Property<string>("RoleId");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PermissionId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("RolePermissions");
                 });
@@ -573,17 +512,17 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
-                    b.Property<int>("RoleId");
+                    b.Property<string>("RoleId");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -623,19 +562,17 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AssignedTo");
+                    b.Property<string>("AssignedTo");
 
-                    b.Property<int>("CompletedBy");
+                    b.Property<string>("CompletedBy");
 
                     b.Property<DateTime>("CompletedOn");
-
-                    b.Property<int>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
@@ -647,7 +584,7 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -806,14 +743,22 @@ namespace TestIT.Web.Migrations
 
             modelBuilder.Entity("TestIT.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName");
 
@@ -821,19 +766,43 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
                     b.Property<string>("PasswordHash");
 
-                    b.Property<string>("PasswordSalt");
+                    b.Property<string>("PhoneNumber");
 
-                    b.Property<string>("Username");
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("TestIT.Entities.UserAssignment", b =>
@@ -841,17 +810,17 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime>("ModifiedOn");
 
                     b.Property<int>("ProjectId");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -860,6 +829,21 @@ namespace TestIT.Web.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserAssignments");
+                });
+
+            modelBuilder.Entity("TestIT.Entities.Role", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
+
+                    b.Property<int>("ProjectTypeId");
+
+                    b.Property<string>("Title");
+
+                    b.HasIndex("ProjectTypeId");
+
+                    b.ToTable("Role");
+
+                    b.HasDiscriminator().HasValue("Role");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -872,7 +856,7 @@ namespace TestIT.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("TestIT.Data.ApplicationUser")
+                    b.HasOne("TestIT.Entities.User")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -880,7 +864,7 @@ namespace TestIT.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("TestIT.Data.ApplicationUser")
+                    b.HasOne("TestIT.Entities.User")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -893,7 +877,7 @@ namespace TestIT.Web.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("TestIT.Data.ApplicationUser")
+                    b.HasOne("TestIT.Entities.User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -974,6 +958,13 @@ namespace TestIT.Web.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("TestIT.Entities.RemoteHostConfiguration", b =>
+                {
+                    b.HasOne("TestIT.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("TestIT.Entities.RemovedPermissionUserAssignment", b =>
                 {
                     b.HasOne("TestIT.Entities.Permission", "Permission")
@@ -985,14 +976,10 @@ namespace TestIT.Web.Migrations
                         .WithMany()
                         .HasForeignKey("UserAssignmentId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
 
-            modelBuilder.Entity("TestIT.Entities.Role", b =>
-                {
-                    b.HasOne("TestIT.Entities.ProjectType", "ProjectType")
+                    b.HasOne("TestIT.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("ProjectTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TestIT.Entities.RolePermission", b =>
@@ -1004,21 +991,22 @@ namespace TestIT.Web.Migrations
 
                     b.HasOne("TestIT.Entities.Role", "Role")
                         .WithMany("Permissions")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RoleId");
+
+                    b.HasOne("TestIT.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TestIT.Entities.RoleUserAssignment", b =>
                 {
                     b.HasOne("TestIT.Entities.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RoleId");
 
                     b.HasOne("TestIT.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TestIT.Entities.TestRun", b =>
@@ -1126,7 +1114,14 @@ namespace TestIT.Web.Migrations
 
                     b.HasOne("TestIT.Entities.User", "User")
                         .WithMany("UserAssignments")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("TestIT.Entities.Role", b =>
+                {
+                    b.HasOne("TestIT.Entities.ProjectType", "ProjectType")
+                        .WithMany()
+                        .HasForeignKey("ProjectTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
