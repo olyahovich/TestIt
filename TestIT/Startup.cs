@@ -23,7 +23,12 @@ using Serilog.Events;
 using StaticDotNet.EntityFrameworkCore.ModelConfiguration;
 using System;
 using System.IO;
+using System.Net;
 using System.Reflection;
+using System.Threading.Tasks;
+using AspNet.Security.OAuth.Validation;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using TestIT.Data;
 using TestIT.Entities;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
@@ -103,7 +108,28 @@ namespace TestIT.Web
                         .UseGlobalExecutionId()
                 });
             // Register the Identity services.
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, Role>(/*config =>
+            {
+                config.Cookies.ApplicationCookie.LoginPath = "/login";
+                config.Cookies.ApplicationCookie.AutomaticChallenge = false;
+
+                // if we are accessing the /api and an unauthorized request is made
+                // do not redirect to the login page, but simply return "Unauthorized"
+                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") &&
+                                                                    ctx.Response.StatusCode == (int)HttpStatusCode.OK)
+                            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        else
+                            ctx.Response.Redirect(ctx.RedirectUri);
+
+                        return Task.CompletedTask;
+                    }
+                };
+                
+            }*/)
                 .AddEntityFrameworkStores<TestItContext>()
                 .AddDefaultTokenProviders();
 
@@ -137,7 +163,7 @@ namespace TestIT.Web
                 // Note: the Mvc.Client sample only uses the authorization code flow but you can enable
                 // the other flows if you need to support implicit, password or client credentials.
                 options.AllowPasswordFlow();
-
+                
                 // When request caching is enabled, authorization and logout requests
                 // are stored in the distributed cache by OpenIddict and the user agent
                 // is redirected to the same page with a single parameter (request_id).
@@ -172,20 +198,6 @@ namespace TestIT.Web
             // Add a middleware used to validate access
             // tokens and protect the API endpoints.
             app.UseOAuthValidation();
-
-            // Alternatively, you can also use the introspection middleware.
-            // Using it is recommended if your resource server is in a
-            // different application/separated from the authorization server.
-            //
-            // app.UseOAuthIntrospection(options =>
-            // {
-            //     options.AutomaticAuthenticate = true;
-            //     options.AutomaticChallenge = true;
-            //     options.Authority = "http://localhost:58795/";
-            //     options.Audiences.Add("resource_server");
-            //     options.ClientId = "resource_server";
-            //     options.ClientSecret = "875sqd4s5d748z78z7ds1ff8zz8814ff88ed8ea4z4zzd";
-            // });
 
             app.UseOpenIddict();
             app.UseDefaultFiles();

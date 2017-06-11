@@ -33,10 +33,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\TestIT.xml</DocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
-    <Content Include="wwwroot\app\about.component.js" />
-    <Content Include="wwwroot\app\about.component.js.map" />
-    <Content Include="wwwroot\app\about.component.ts" />
+    <Content Remove="wwwroot/images\logo2.png" />
+    <Content Remove="wwwroot/images\logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="wwwroot\app\app.component.js" />
     <Content Include="wwwroot\app\app.component.js.map" />
     <Content Include="wwwroot\app\app.component.spec.js" />
@@ -48,21 +50,27 @@
     <Content Include="wwwroot\app\app.routing.js" />
     <Content Include="wwwroot\app\app.routing.js.map" />
     <Content Include="wwwroot\app\app.routing.ts" />
-    <Content Include="wwwroot\app\contact.component.js" />
-    <Content Include="wwwroot\app\contact.component.js.map" />
-    <Content Include="wwwroot\app\contact.component.ts" />
-    <Content Include="wwwroot\app\changePassword.component.js" />
-    <Content Include="wwwroot\app\changePassword.component.js.map" />
-    <Content Include="wwwroot\app\changePassword.component.ts" />
-    <Content Include="wwwroot\app\index.component.js" />
-    <Content Include="wwwroot\app\index.component.js.map" />
-    <Content Include="wwwroot\app\index.component.ts" />
-    <Content Include="wwwroot\app\login.component.js" />
-    <Content Include="wwwroot\app\login.component.js.map" />
-    <Content Include="wwwroot\app\login.component.ts" />
-    <Content Include="wwwroot\app\manage.component.js" />
-    <Content Include="wwwroot\app\manage.component.js.map" />
-    <Content Include="wwwroot\app\manage.component.ts" />
+    <Content Include="wwwroot\app\components\about.component.js" />
+    <Content Include="wwwroot\app\components\about.component.js.map" />
+    <Content Include="wwwroot\app\components\about.component.ts" />
+    <Content Include="wwwroot\app\components\account\changePassword.component.js" />
+    <Content Include="wwwroot\app\components\account\changePassword.component.js.map" />
+    <Content Include="wwwroot\app\components\account\changePassword.component.ts" />
+    <Content Include="wwwroot\app\components\account\login.component.js" />
+    <Content Include="wwwroot\app\components\account\login.component.js.map" />
+    <Content Include="wwwroot\app\components\account\login.component.ts" />
+    <Content Include="wwwroot\app\components\account\manage.component.js" />
+    <Content Include="wwwroot\app\components\account\manage.component.js.map" />
+    <Content Include="wwwroot\app\components\account\manage.component.ts" />
+    <Content Include="wwwroot\app\components\account\register.component.js" />
+    <Content Include="wwwroot\app\components\account\register.component.js.map" />
+    <Content Include="wwwroot\app\components\account\register.component.ts" />
+    <Content Include="wwwroot\app\components\contact.component.js" />
+    <Content Include="wwwroot\app\components\contact.component.js.map" />
+    <Content Include="wwwroot\app\components\contact.component.ts" />
+    <Content Include="wwwroot\app\components\index.component.js" />
+    <Content Include="wwwroot\app\components\index.component.js.map" />
+    <Content Include="wwwroot\app\components\index.component.ts" />
     <Content Include="wwwroot\app\models\ChangePasswordViewModel.js" />
     <Content Include="wwwroot\app\models\ChangePasswordViewModel.js.map" />
     <Content Include="wwwroot\app\models\ChangePasswordViewModel.ts" />
@@ -79,9 +87,6 @@
     <Content Include="wwwroot\app\models\ViewModelResponse.js" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js.map" />
     <Content Include="wwwroot\app\models\ViewModelResponse.ts" />
-    <Content Include="wwwroot\app\register.component.js" />
-    <Content Include="wwwroot\app\register.component.js.map" />
-    <Content Include="wwwroot\app\register.component.ts" />
     <Content Include="wwwroot\app\rxjs-operators.js" />
     <Content Include="wwwroot\app\rxjs-operators.js.map" />
     <Content Include="wwwroot\app\rxjs-operators.ts" />
@@ -123,7 +128,6 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
@@ -152,7 +156,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
-    <PackageReference Include="System.Composition" Version="1.0.31" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
@@ -175,6 +178,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="ViewModels\Event\" />
     <Folder Include="ViewModels\Shared\" />
+    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
   
   <ItemGroup>

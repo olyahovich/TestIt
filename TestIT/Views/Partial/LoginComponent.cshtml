@@ -3,37 +3,37 @@
 @addTagHelper *,TestIT.Web
 @model LoginViewModel
 
-<div class="row">
-    <div class="col-md-8">
-        <section>
-            <h2>Log in.</h2>
-            <h5>Use a local account to log in.</h5>
-            <hr />
-            <div *ngIf="loginViewModel != null">
-                <form role="form" #testForm="ngForm" class="form-horizontal">
-                    <hfdi for="Email"></hfdi>
-                    <hfdi for="Password"></hfdi>
-                    <div class="form-group row">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button type="button" (click)="login($event)" class="btn btn-secondary">Log in</button>
-                            <p>Not registered? <a routerLink="/register"> Click here to Register</a></p>
-                            @*
-                                    <-- to be added -->
-                                    <p>
-                                    <a asp-action="ForgotPassword">Forgot your password?</a>
-                                </p>*@
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section>
-            <!-- tba -->
-        </section>
-    </div>
-
+<div fxLayout="column" fxFlex class="login"  *ngIf="loginViewModel != null">
+    <md-card class="login-card" fxFlex>
+        <md-card-content class="mat-card-content">
+            <form role="form" #testForm="ngForm">
+                <div><h4 style="margin-top: 20px;">Login</h4><p>Please enter your email address and password:</p></div>
+                <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around">
+                    <md-input-container class="full-width">
+                        <input mdInput type="email" required name="email">
+                        <md-placeholder for="email">
+                            Email
+                        </md-placeholder>
+                    </md-input-container>
+                    <md-input-container class="full-width">
+                        <input mdInput type="password" id="password" required name="password">
+                        <md-placeholder for="password">
+                            Password
+                        </md-placeholder>
+                    </md-input-container>
+                </div>
+                <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around" style="margin-top: 1rem">
+                    <button md-raised-button color="primary" type="button" (click)="login($event)" class="upper">login</button>
+                    <p>
+                        Not registered? <a routerLink="/register"> Click here to Register</a>
+                    </p>
+                </div>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1rem" style="align-items: center; justify-content: space-between;">
+                   <md-slide-toggle>Remember me</md-slide-toggle> <p><a routerLink="/register"> Forgot Password?</a></p>
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
 </div>
 
 <div *ngIf="errorMessage != null">

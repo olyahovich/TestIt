@@ -55,7 +55,6 @@ export class AuthService {
 
     // called when logging out user; clears tokens from browser
     logout() {
-        //localStorage.removeItem('access_token');
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('bearer_token');
         sessionStorage.removeItem('expires_in');

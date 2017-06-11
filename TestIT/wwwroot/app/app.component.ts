@@ -6,7 +6,7 @@ import { Http, Response, Headers } from '@angular/http';
 import { AuthService } from './security/auth.service';
 
 @Component({
-    selector: 'my-app',
+    selector: 'testIt-app',
     templateUrl: 'partial/appComponent'
 })
 

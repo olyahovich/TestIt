@@ -1,46 +1,54 @@
-﻿<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header" (click)="setTitle('Home - TestIT')">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a routerLink="/home" routerLinkActive="active" class="navbar-brand">TestIT</a>
+﻿    <md-toolbar class="main-header" role="toolbar" color="primary">
+        <button md-icon-button (click)="sidenav.toggle()" class="mat-icon-button">
+            <md-icon class="material-icons">menu</md-icon>
+        </button>
+        <a routerLink="/home" routerLinkActive="active">
+            <div class="branding">
+                <div class="logo"></div>
+            </div>
+        </a>
+        <span>{{title}}</span>
+        <span class="fill-remaining-space"></span>
+                <a md-button class="upper" (click)="setTitle('About - TestIT')" routerLink="/about">About</a>
+
+                <a md-button class="upper" href="swagger" [hidden]="!isLoggedIn()">API</a>
+
+                <a md-button class="upper" (click)="setTitle('Contact - TestIT')" routerLink="/contact">Contacts</a>
+
+        @await Html.PartialAsync("_LoginPartial")
+        <button md-icon-button [mdMenuTriggerFor]="appMenu"><md-icon class="material-icons" [hidden]="!isLoggedIn()">account_circle</md-icon></button>
+    </md-toolbar>
+
+    <md-menu #appMenu="mdMenu">
+        <button md-menu-item> Account </button>
+        <button md-menu-item> Logout </button>
+    </md-menu>
+
+<md-sidenav-container  class="app-component-sidenav">
+    <md-sidenav #sidenav class="sidebar-panel mat-sidenav" mode="push">
+        <md-nav-list>
+            <md-list-item appaccordionlink="" role="listitem">
+ 
+            </md-list-item>
+        </md-nav-list>
+    </md-sidenav>
+        
+    <router-outlet></router-outlet>
+</md-sidenav-container>
+<footer class="testIt-footer primary">
+    <div class="testIt-footer-list">
+        <div class="testIt-footer-logo">
+
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a class="nav-link" (click)="setTitle('Home - TestIT')" routerLink="/home" routerLinkActive="active">Home</a>
-                </li>
-                <li [hidden]="!isLoggedIn()">
-                    <a class="nav-link" (click)="setTitle('About - TestIT')" routerLink="/about">About</a>
-                </li>
-                <li [hidden]="!isLoggedIn()">
-                    <a class="nav-link" href="swagger">API</a>
-                </li>
-                <li>
-                    <a class="nav-link" (click)="setTitle('Contact - TestIT')" routerLink="/contact">Contacts</a>
-                </li>
+
+        <div class="testIt-footer-links">
+            <ul>
+               
             </ul>
-            @await Html.PartialAsync("_LoginPartial")
+        </div>
+
+        <div class="testIt-footer-copyright">
+            <p>Powered by Oleg Lyahovich ©2017.<br> Code licensed under an MIT-style License.</p>
         </div>
     </div>
-</div>
-
-<div class="container-fluid body-content">
-
-    <div class="container-fluid">
-     <router-outlet></router-outlet>
-    </div>
-
-    @{
-        string razorServerSideData = "ASP.Net Core";
-    }
-
-    <hr />
-    <footer>
-        <p>&copy; 2017 - TestIT = (@razorServerSideData + {{angularClientSideData}})<sup>2</sup></p>
-    </footer>
-</div>
+</footer>

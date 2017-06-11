@@ -1,6 +1,6 @@
 ﻿
 <div [hidden]="!isLoggedIn()">
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav">
         <li>
             <a class="nav-link" (click)="logout()" routerLink="/home">Logout</a>
         </li>
@@ -8,8 +8,6 @@
 </div>
 
 <div [hidden]="isLoggedIn()">
-    <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-link" (click)="setTitle('Register')" routerLink="/register" routerLinkActive="active-link">Register</a></li>
-        <li><a class="nav-link" (click)="setTitle('Login')" routerLink="/login" routerLinkActive="active-link">Login</a></li>
-    </ul>
+        <a class="upper" md-button (click)="setTitle('Register')" routerLink="/register" routerLinkActive="active-link">Register</a>
+        <a class="upper"  md-button (click)="setTitle('Login')" routerLink="/login" routerLinkActive="active-link">Login</a>
 </div>

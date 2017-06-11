@@ -42,16 +42,17 @@ namespace TestIT.Web.Helpers
             var labelName = metadata.Placeholder ?? shortLabelName;
             var description = For.Metadata.Description ?? labelName;
 
-            // generate the label, point to the data entry input control
-            var labelTag = new TagBuilder("label");
-            labelTag.InnerHtml.Append(description);
-            labelTag.MergeAttribute("for", propertyName);
-            labelTag.AddCssClass("form-control-label");
-            labelTag.AddCssClass("col-md-2");
-
+            var inputContainerTag = new TagBuilder("md-input-container");
+            inputContainerTag.AddCssClass("full-width");
             // add the input control; TODO: add textarea, date picker support
             var inputTag = new TagBuilder("input");
             inputTag.AddCssClass("form-control");
+            // generate the label, point to the data entry input control
+            var labelTag = new TagBuilder("md-placeholder");
+            labelTag.InnerHtml.Append(description);
+            labelTag.MergeAttribute("for", propertyName);
+
+
 
             // TODO: further expand datatypes here
             switch (dataType)
@@ -60,8 +61,8 @@ namespace TestIT.Web.Helpers
                     inputTag.MergeAttribute("type", dataType);
                     break;
 
-                case "Currency":
-                    inputTag.MergeAttribute("type", "number");
+                case "Email":
+                    inputTag.MergeAttribute("type", "email");
                     break;
 
                 default:
