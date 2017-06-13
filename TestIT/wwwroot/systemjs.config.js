@@ -31,7 +31,12 @@
             // other libraries
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'hammerjs': 'npm:hammerjs/hammer.js',
-            'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js'
+            'chartjs': 'npm:chart.js/dist/Chart.js',
+            'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js',
+            '@ngrx/core': 'npm:@ngrx/core/bundles/core.umd.js',
+            '@ngrx/effects': 'npm:@ngrx/effects/bundles/effects.umd.js',
+            '@ngrx/store': 'npm:@ngrx/store/bundles/store.umd.js',
+            '@ngrx/store-devtools': 'npm:@ngrx/store-devtools/bundles/store-devtools.umd.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {

@@ -84,6 +84,7 @@
     <Content Include="wwwroot\app\models\testData.js" />
     <Content Include="wwwroot\app\models\testData.js.map" />
     <Content Include="wwwroot\app\models\TestData.ts" />
+    <Content Include="wwwroot\app\models\user.ts" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js.map" />
     <Content Include="wwwroot\app\models\ViewModelResponse.ts" />
@@ -99,9 +100,13 @@
     <Content Include="wwwroot\app\security\OpenIdDictToken.js" />
     <Content Include="wwwroot\app\security\OpenIdDictToken.js.map" />
     <Content Include="wwwroot\app\security\OpenIdDictToken.ts" />
-    <Content Include="wwwroot\app\services\sampleData.service.js" />
-    <Content Include="wwwroot\app\services\sampleData.service.js.map" />
-    <Content Include="wwwroot\app\services\SampleData.service.ts" />
+    <Content Include="wwwroot\app\services\membership.service.js" />
+    <Content Include="wwwroot\app\services\membership.service.js.map" />
+    <Content Include="wwwroot\app\services\membership.service.ts" />
+    <Content Include="wwwroot\app\services\MembershipService.js" />
+    <Content Include="wwwroot\app\services\MembershipService.js.map" />
+    <Content Include="wwwroot\app\services\MembershipService.ts" />
+    <Content Include="wwwroot\app\store\actions\user.actions.ts" />
     <Content Include="wwwroot\favicon.ico" />
     <Content Include="wwwroot\main.js" />
     <Content Include="wwwroot\main.js.map" />
@@ -178,6 +183,8 @@
     <Folder Include="Migrations\" />
     <Folder Include="ViewModels\Event\" />
     <Folder Include="ViewModels\Shared\" />
+    <Folder Include="wwwroot\app\store\effects\" />
+    <Folder Include="wwwroot\app\store\reducers\" />
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
   

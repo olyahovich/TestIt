@@ -34,7 +34,6 @@ namespace TestIT.Data
         public DbSet<TestRunTestRunAction> TestRunTestRunActions { get; set; }
         public new DbSet<User> Users { get; set; }
         public DbSet<UserAssignment> UserAssignments { get; set; }
-        public DbSet<TestData> TestDatas { get; set; }
 
         public TestItContext(DbContextOptions<TestItContext> options) : base(options)
         {

@@ -89,7 +89,7 @@ namespace TestIT.Web.Api
                     return BadRequest(new OpenIdConnectResponse
                     {
                         Error = OpenIdConnectConstants.Errors.InvalidGrant,
-                        ErrorDescription = "The username/password couple is invalid."
+                        ErrorDescription = "The Email/password couple is invalid."
                     });
                 }
 

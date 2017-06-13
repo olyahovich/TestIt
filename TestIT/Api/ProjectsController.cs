@@ -15,19 +15,19 @@ namespace TestIT.Web.Api
 {
     [Authorize]
     [Route("api/[controller]")]
-    public class SampleDataController : Controller
+    public class ProjectsController : Controller
     {
         private readonly TestItContext _context;
 
-        public SampleDataController(TestItContext context)
+        public ProjectsController(TestItContext context)
         {
             _context = context;
         }
 
         /// <summary>
-        /// Returns a TestData with matching Id
+        /// Returns a Projects with matching Id
         /// </summary>
-        /// <remarks>This method will return an IActionResult containing the TestData record and StatusCode 200 if successful. 
+        /// <remarks>This method will return an IActionResult containing the Projects record and StatusCode 200 if successful. 
         /// If there is a an error, you will get a status message and StatusCode which will indicate what was the error.</remarks>
         /// <param name="id">the ID of the record to retrieve</param>
         /// <returns>an IActionResult</returns>
@@ -35,8 +35,8 @@ namespace TestIT.Web.Api
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var testData = await _context.TestDatas
-                                   .DefaultIfEmpty(null as TestData)
+            var testData = await _context.Projects
+                                   .DefaultIfEmpty(null as Project)
                                    .SingleOrDefaultAsync(a => a.Id == id);
 
             if (testData == null)
@@ -47,11 +47,11 @@ namespace TestIT.Web.Api
             return Json(Ok(testData));
         }
 
-        // GET: api/sampleData
+        // GET: api/Projects
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var testData = _context.TestDatas;
+            var testData = _context.Projects;
 
             if (!testData.Any())
             {
@@ -61,9 +61,9 @@ namespace TestIT.Web.Api
             return Json(Ok(await testData.ToListAsync()));
         }
 
-        // POST api/sampleData
+        // POST api/Projects
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]TestData value)
+        public async Task<IActionResult> Post([FromBody]Project value)
         {
             ICollection<ValidationResult> results = new List<ValidationResult>();
 
@@ -78,7 +78,7 @@ namespace TestIT.Web.Api
                 var newTestData = _context.AddAsync(value);
                 await _context.SaveChangesAsync();
 
-                return Json(Ok(newTestData.Result.Entity as TestData));
+                return Json(Ok(newTestData.Result.Entity as Project));
             }
             catch (DbUpdateException exception)
             {
@@ -87,9 +87,9 @@ namespace TestIT.Web.Api
             }
         }
 
-        // PUT api/sampleData/5
+        // PUT api/Projects/5
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody]TestData value)
+        public async Task<IActionResult> Put([FromBody]Project value)
         {
             ICollection<ValidationResult> results = new List<ValidationResult>();
 
@@ -98,7 +98,7 @@ namespace TestIT.Web.Api
                 return Json(BadRequest(results));
             }
 
-            bool recordExists = _context.TestDatas.Where(a => a.Id == value.Id).Any();
+            bool recordExists = _context.Projects.Where(a => a.Id == value.Id).Any();
 
             if (!recordExists)
             {
@@ -118,11 +118,11 @@ namespace TestIT.Web.Api
             }
         }
 
-        // DELETE api/sampleData/5
+        // DELETE api/Projects/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var testData = await _context.TestDatas
+            var testData = await _context.Projects
                                          .AsNoTracking()
                                          .SingleOrDefaultAsync(m => m.Id == id);
 
@@ -133,7 +133,7 @@ namespace TestIT.Web.Api
 
             try
             {
-                _context.TestDatas.Remove(testData);
+                _context.Projects.Remove(testData);
                 await _context.SaveChangesAsync();
                 return Json(Ok("deleted"));
             }

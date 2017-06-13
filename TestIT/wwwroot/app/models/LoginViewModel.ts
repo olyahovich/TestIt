@@ -1,6 +1,14 @@
 ﻿import { Component } from '@angular/core';
 
 export class LoginViewModel {
-    email: string;
-    password: string;
+    Email: string;
+    Password: string;
+    RememberMe: boolean;
+
+    constructor(email: string,
+        password: string) {
+        this.Email = email;
+        this.Password = password;
+        this.RememberMe = false;
+    }
 }

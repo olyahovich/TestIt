@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ namespace TestIT.Web.Api
         {
             if (ModelState.IsValid)
             {
-                var user = new User() { UserName = model.Email, Email = model.Email };
+                var user = new User() { UserName = model.Email, Email = model.Email, CreatedOn = DateTime.UtcNow};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

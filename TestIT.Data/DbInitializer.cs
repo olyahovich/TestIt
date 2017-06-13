@@ -11,17 +11,6 @@ namespace TestIT.Data
             {
                 context.Database.Migrate();
             }
-
-            var testData = new TestData
-            {
-                Username = "JaneDoe",
-                EmailAddress = "jane.doe@example.com",
-                Password = "LetM@In!",
-                Currency = 321.45M
-            };
-
-            context.TestDatas.Add(testData);
-            context.SaveChanges();
         }
     }
 }

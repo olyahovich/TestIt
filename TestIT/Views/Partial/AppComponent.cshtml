@@ -9,29 +9,54 @@
         </a>
         <span>{{title}}</span>
         <span class="fill-remaining-space"></span>
-                <a md-button class="upper" (click)="setTitle('About - TestIT')" routerLink="/about">About</a>
+                <a md-button class="upper" routerLink="/about" [hidden]="!isLoggedIn()">About</a>
 
                 <a md-button class="upper" href="swagger" [hidden]="!isLoggedIn()">API</a>
 
-                <a md-button class="upper" (click)="setTitle('Contact - TestIT')" routerLink="/contact">Contacts</a>
+                <a md-button class="upper" routerLink="/contact" [hidden]="!isLoggedIn()">Contacts</a>
 
-        @await Html.PartialAsync("_LoginPartial")
         <button md-icon-button [mdMenuTriggerFor]="appMenu"><md-icon class="material-icons" [hidden]="!isLoggedIn()">account_circle</md-icon></button>
     </md-toolbar>
 
     <md-menu #appMenu="mdMenu">
-        <button md-menu-item> Account </button>
-        <button md-menu-item> Logout </button>
-    </md-menu>
+        <a md-menu-item role="menuitem" routerLink="/about">
+            <md-icon class="material-icons">person</md-icon> <span>Account</span> </a>
+            <button md-menu-item role="menuitem" (click)="logout()" aria-disabled="false"><md-icon class="material-icons">exit_to_app</md-icon> <span>Logout</span>  </button>
+</md-menu>
 
 <md-sidenav-container  class="app-component-sidenav">
-    <md-sidenav #sidenav class="sidebar-panel mat-sidenav" mode="push">
-        <md-nav-list>
-            <md-list-item appaccordionlink="" role="listitem">
- 
+    <md-sidenav #sidenav class="sidebar-panel" mode="push">
+        <md-nav-list class="navigation">
+            <md-list-item>
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" [routerLink]="['/']">
+                    <md-icon>Home</md-icon>
+                    <span>Home</span>
+                    <span  fxflex></span>
+                </a>
+                </md-list-item>
+            <md-list-item>
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" [routerLink]="['/']">
+                    <md-icon>Home</md-icon>
+                    <span>Home</span>
+                    <span fxflex></span>
+                </a>
             </md-list-item>
-        </md-nav-list>
-    </md-sidenav>
+            <md-list-item>
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" [routerLink]="['/']">
+                    <md-icon>Home</md-icon>
+                    <span>Home</span>
+                    <span  fxflex></span>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a *ngIf="user" md-list-item (click)="sidenav.close(); logout()" class="logout-button">
+                    <md-icon>Home</md-icon>
+                    <span>Home</span>
+                    <span fxflex></span>
+                </a>
+            </md-list-item>
+            </md-nav-list>
+</md-sidenav>
         
     <router-outlet></router-outlet>
 </md-sidenav-container>

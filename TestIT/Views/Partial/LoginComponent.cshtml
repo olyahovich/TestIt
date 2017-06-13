@@ -6,24 +6,20 @@
 <div fxLayout="column" fxFlex class="login"  *ngIf="loginViewModel != null">
     <md-card class="login-card" fxFlex>
         <md-card-content class="mat-card-content">
-            <form role="form" #testForm="ngForm">
+            <form role="form" [formGroup]="loginForm" novalidate>
                 <div><h4 style="margin-top: 20px;">Login</h4><p>Please enter your email address and password:</p></div>
                 <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around">
                     <md-input-container class="full-width">
-                        <input mdInput type="email" required name="email">
-                        <md-placeholder for="email">
-                            Email
-                        </md-placeholder>
+                        <input mdInput type="email" placeholder="Email" required name="email" formControlName="email">
+                        <md-hint align="left" *ngIf="loginForm.controls.email.errors && !loginForm.controls.email.pristine" class="error">Email is required</md-hint>
                     </md-input-container>
                     <md-input-container class="full-width">
-                        <input mdInput type="password" id="password" required name="password">
-                        <md-placeholder for="password">
-                            Password
-                        </md-placeholder>
+                        <input mdInput type="password" id="password" placeholder="Password" required name="password" formControlName="password">
+                        <md-hint align="left" *ngIf="loginForm.controls.password.errors && !loginForm.controls.password.pristine" class="error">Password is required</md-hint>
                     </md-input-container>
                 </div>
                 <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around" style="margin-top: 1rem">
-                    <button md-raised-button color="primary" type="button" (click)="login($event)" class="upper">login</button>
+                    <button md-raised-button color="primary" type="button" (click)="login($event)" class="upper">Sign in</button>
                     <p>
                         Not registered? <a routerLink="/register"> Click here to Register</a>
                     </p>

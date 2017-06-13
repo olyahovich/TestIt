@@ -4,7 +4,7 @@
 
 $primary: mat-palette($mat-blue,500);
 $accent: mat-palette($mat-light-green,A400);
-$warn: mat-palette($mat-orange,500);
+$warn: mat-palette($mat-red,500);
 
 // Background palette for dark themes.
 $theme-background: ( 
@@ -50,3 +50,12 @@ $theme: theme-fn($primary, $accent, $warn, $theme-foreground, $theme-background)
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($theme);
+
+
+md-input-container.ng-invalid.ng-touched .md-input-underline {
+    border-color: mat-color($warn);
+}
+
+md-hint.error, .error {
+    color: mat-color($warn);
+}

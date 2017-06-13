@@ -35,13 +35,13 @@ export class ChangePasswordComponent {
 
     changePassword(event: Event): void {
         event.preventDefault();
-        let body = { 'oldPassword': this.changePasswordViewModel.oldPassword, 'newPassword': this.changePasswordViewModel.newPassword, 'confirmPassword': this.changePasswordViewModel.confirmPassword };
+        let body = { 'oldPassword': this.changePasswordViewModel.OldPassword, 'newPassword': this.changePasswordViewModel.NewPassword, 'confirmPassword': this.changePasswordViewModel.ConfirmPassword };
 
         this.http.post('manage/changePassword', JSON.stringify(body), { headers: this.authService.authJsonHeaders() })
             .subscribe(response => {
                 if (response.status == 200) {
                     this.showSuccess('Password changed',response.json());
-                    this.router.navigate(['manage']);
+                    this.router.navigate(['/profile']);
                 } else {
                     this.showError('Password not changed', response.json());
                 }

@@ -12,17 +12,17 @@ namespace TestIt.Web.Api
 {
     [SwaggerIgnore]
     [Authorize]
-    public class ManageController : Controller
+    public class ProfileController : Controller
     {
         private readonly UserManager<User> _userManager;
 
-        public ManageController(UserManager<User> userManager)
+        public ProfileController(UserManager<User> userManager)
         {
             _userManager = userManager;
         }
 
         [Authorize(ActiveAuthenticationSchemes = OAuthValidationDefaults.AuthenticationScheme)]
-        [HttpPost("~/manage/changePassword")]
+        [HttpPost("~/profile/changePassword")]
         public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordViewModel passwordUpdate)
         {
             var user = await _userManager.GetUserAsync(User);

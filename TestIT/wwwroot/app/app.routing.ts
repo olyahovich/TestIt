@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, data: { title: 'Login' } },
     { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
     { path: 'changePassword', component: ChangePasswordComponent, data: { title: 'Change Password' }, canActivate: [AuthGuard] },
-    { path: 'manage', component: ManageComponent, data: { title: 'Manage Account' }, canActivate: [AuthGuard] },
+    { path: 'profile', component: ManageComponent, data: { title: 'Manage Account' }, canActivate: [AuthGuard] },
     { path: 'about', component: AboutComponent, data: { title: 'About' }, canActivate: [AuthGuard] },
     { path: 'contact', component: ContactComponent, data: { title: 'Contact' },  canActivate: [AuthGuard] }
 ];

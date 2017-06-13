@@ -46,13 +46,10 @@ namespace TestIT.Web.Helpers
             inputContainerTag.AddCssClass("full-width");
             // add the input control; TODO: add textarea, date picker support
             var inputTag = new TagBuilder("input");
-            inputTag.AddCssClass("form-control");
             // generate the label, point to the data entry input control
             var labelTag = new TagBuilder("md-placeholder");
             labelTag.InnerHtml.Append(description);
             labelTag.MergeAttribute("for", propertyName);
-
-
 
             // TODO: further expand datatypes here
             switch (dataType)
@@ -61,7 +58,7 @@ namespace TestIT.Web.Helpers
                     inputTag.MergeAttribute("type", dataType);
                     break;
 
-                case "Email":
+                case "EmailAddress":
                     inputTag.MergeAttribute("type", "email");
                     break;
 
@@ -73,105 +70,75 @@ namespace TestIT.Web.Helpers
             // common attributes for data input control here
             inputTag.MergeAttribute("id", propertyName);
             inputTag.MergeAttribute("name", propertyName);
-            inputTag.MergeAttribute("placeholder", shortLabelName);
-            inputTag.MergeAttribute("#" + propertyName, "ngModel");
-
-            // set up validation conditional DIV's here; only show error if modifications to form have been made
-            TagBuilder outerValidationBlock = new TagBuilder("div");
-            outerValidationBlock.MergeAttribute("*ngIf", string.Format("({0}.dirty || {0}.touched)", propertyName));
+            inputTag.MergeAttribute("mdInput", "");
 
             // .. and then, only if an error in data entry
-            TagBuilder validationBlock = new TagBuilder("div");
-            validationBlock.MergeAttribute("*ngIf", string.Format("{0}.errors", propertyName));
-            validationBlock.MergeAttribute("class", "alert alert-danger");
+            //TagBuilder validationBlock = new TagBuilder("div");
+            //validationBlock.MergeAttribute("*ngIf", string.Format("{0}.errors", propertyName));
+            //validationBlock.MergeAttribute("class", "error");
 
-            // Handle minimum, maximum, required, regex and other validation. TODO: refactor common code out
-            if (metadata.HasMinLengthValidation())
-            {
-                var minLength = metadata.MinLength();
-                var minLengthValidation = new TagBuilder("div");
-                minLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.minlength", propertyName));
-                minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
-                validationBlock.InnerHtml.AppendHtml(minLengthValidation);
+            //// Handle minimum, maximum, required, regex and other validation. TODO: refactor common code out
+            //if (metadata.HasMinLengthValidation())
+            //{
+            //    var minLength = metadata.MinLength();
+            //    var minLengthValidation = new TagBuilder("md-hint");
+            //    minLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.minlength", propertyName));
+            //    minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
+            //    minLengthValidation.MergeAttribute("class", "error");
+            //    validationBlock.InnerHtml.AppendHtml(minLengthValidation);
 
-                inputTag.Attributes.Add("minLength", minLength.ToString());
-            }
+            //    inputTag.Attributes.Add("minLength", minLength.ToString());
+            //}
 
-            if (metadata.HasMaxLengthValidation())
-            {
-                var maxLength = metadata.MaxLength();
-                var maxLengthValidation = new TagBuilder("div");
-                maxLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.maxlength", propertyName));
-                maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
-                validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
+            //if (metadata.HasMaxLengthValidation())
+            //{
+            //    var maxLength = metadata.MaxLength();
+            //    var maxLengthValidation = new TagBuilder("md-hint");
+            //    maxLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.maxlength", propertyName));
+            //    maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
+            //    validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
 
-                inputTag.Attributes.Add("maxLength", maxLength.ToString());
-            }
+            //    inputTag.Attributes.Add("maxLength", maxLength.ToString());
+            //}
 
-            if (metadata.HasRegexValidation())
-            {
-                var regexValidation = new TagBuilder("div");
-                regexValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.pattern", propertyName));
-                regexValidation.InnerHtml.Append(string.Format("{0} is invalid", labelName));
-                validationBlock.InnerHtml.AppendHtml(regexValidation);
+            //if (metadata.HasRegexValidation())
+            //{
+            //    var regexValidation = new TagBuilder("md-hint");
+            //    regexValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.pattern", propertyName));
+            //    regexValidation.InnerHtml.Append(string.Format("{0} is invalid", labelName));
+            //    validationBlock.InnerHtml.AppendHtml(regexValidation);
 
-                inputTag.Attributes.Add("pattern", metadata.RegexExpression());
-            }
+            //    inputTag.Attributes.Add("pattern", metadata.RegexExpression());
+            //}
 
-            if (metadata.IsRequired)
-            {
-                var requiredValidation = new TagBuilder("div");
-                requiredValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.required", propertyName));
-                requiredValidation.InnerHtml.Append(string.Format("{0} is required", labelName));
-                validationBlock.InnerHtml.AppendHtml(requiredValidation);
+            //if (metadata.IsRequired)
+            //{
+            //    var requiredValidation = new TagBuilder("md-hint");
+            //    requiredValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.required", propertyName));
+            //    requiredValidation.InnerHtml.Append(string.Format("{0} is required", labelName));
+            //    validationBlock.InnerHtml.AppendHtml(requiredValidation);
 
-                inputTag.Attributes.Add("required", "required");
-            }
+            //    inputTag.Attributes.Add("required", "required");
+            //}
 
             // bind angular data model to the control,
-            inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
+            //inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
 
             // TODO: if adding say text area, you want closing tag. For input tag you do not have closing or self-closing
             inputTag.TagRenderMode = TagRenderMode.StartTag;
 
             // now generate the outer wrapper for the form group, get ready to start filling it with content prepared above
             output.TagName = "div";
-            output.Attributes.Add("class", "form-group row");
+            output.Attributes.Add("fxLayout", "column");
+            output.Attributes.Add("fxLayoutGap", "1rem");
+            output.Attributes.Add("fxlayoutAlign", "space-around");
 
-            // first the label
-            var rhsColumn = new TagBuilder("div");
-            rhsColumn.Attributes.Add("class", "col-md-10");
-
+            output.Content.AppendHtml(inputContainerTag);
+            
+            output.Content.AppendHtml(inputTag);
             output.Content.AppendHtml(labelTag);
 
-            // Some input controls use bootstrap "input group"- wrap the input tag with an input group, if needed
-            switch (dataType)
-            {
-                case "Currency":
-                    var divInputGroup = new TagBuilder("div");
-                    divInputGroup.MergeAttribute("class", "input-group");
-
-                    var spanInputGroupAddon = new TagBuilder("span");
-                    spanInputGroupAddon.MergeAttribute("class", "input-group-addon");
-                    spanInputGroupAddon.InnerHtml.Append("$");
-
-                    divInputGroup.InnerHtml.AppendHtml(spanInputGroupAddon);
-                    divInputGroup.InnerHtml.AppendHtml(inputTag);
-
-                    rhsColumn.InnerHtml.AppendHtml(divInputGroup);
-                    output.Content.AppendHtml(rhsColumn);
-                    break;
-
-                default:
-                    // most of the time we simply append the input controls prepared above
-                    rhsColumn.InnerHtml.AppendHtml(inputTag);
-                    output.Content.AppendHtml(rhsColumn);
-                    break;
-            }
-
-            // add the validation prepared earlier, to the end, last of all
-            outerValidationBlock.InnerHtml.AppendHtml(validationBlock);
-            output.Content.AppendHtml(outerValidationBlock);
+            //output.Content.AppendHtml(validationBlock);
         }
     }
 }
