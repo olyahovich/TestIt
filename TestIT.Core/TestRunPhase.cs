@@ -11,6 +11,6 @@ namespace TestIT.Entities
         public TestRun TestRun { get; set; }
         public TestRunResult TestRunResult { get; set; }
         public int TestRunId { get; set; }
-        public int TestResultId { get; set; }
+        public int TestRunResultId { get; set; }
     }
 }
