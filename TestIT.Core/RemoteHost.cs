@@ -17,6 +17,6 @@ namespace TestIT.Entities
         public RemoteHostStatus RemoteHostStatus { get; set; }
         public int StatusId { get; set; }
         public RemoteHostConfiguration RemoteHostConfiguration { get; set; }
-        public int ConfigurationId { get; set; }
+        public int RemoteHostConfigurationId { get; set; }
     }
 }
