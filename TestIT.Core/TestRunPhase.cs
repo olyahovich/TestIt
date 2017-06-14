@@ -9,8 +9,6 @@ namespace TestIT.Entities
         public int Id { get; set; }
         public string Phase { get; set;}
         public TestRun TestRun { get; set; }
-        public TestRunResult TestRunResult { get; set; }
         public int TestRunId { get; set; }
-        public int TestRunResultId { get; set; }
     }
 }
