@@ -10,6 +10,7 @@ namespace TestIT.Data.Configurations
             base.Configure(builder);
             builder.Property(u => u.ActionId).IsRequired();
             builder.Property(u => u.ObjectId).IsRequired();
+
         }
     }
 }
