@@ -8,9 +8,9 @@ namespace TestIT.Data.Configurations
         public new void Configure(EntityTypeBuilder<RemoteHost> builder)
         {
             base.Configure(builder);
-            builder.Property(u => u.StatusId).IsRequired();
+            builder.Property(u => u.RemoteHostStatusId).IsRequired();
             builder.Property(u => u.HostName).IsRequired().HasMaxLength(255);
-            builder.Property(u => u.ConfigurationId).IsRequired();
+            builder.Property(u => u.RemoteHostConfigurationId).IsRequired();
             builder.Property(u => u.UserId).IsRequired();
             builder.Property(u => u.ModifiedBy).IsRequired();
             builder.Property(u => u.CreatedOn);

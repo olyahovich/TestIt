@@ -5,7 +5,8 @@ namespace TestIT.Entities
 {
     public class RoleUserAssignment : IEntityBase
     {
-        public string UserId { get; set; }
+        public UserAssignment UserAssignment { get; set; }
+        public string UserAssignmentId { get; set; }
         public string RoleId { get; set; }
         public Role Role { get; set; }
         public User User { get; set; }
