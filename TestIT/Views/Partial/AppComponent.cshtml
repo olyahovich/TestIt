@@ -1,5 +1,7 @@
-﻿    <md-toolbar class="main-header" role="toolbar" color="primary">
-        <button md-icon-button (click)="sidenav.toggle()" class="mat-icon-button">
+﻿   
+
+<md-toolbar class="main-header mat-elevation-z6" role="toolbar" color="primary">
+        <button md-icon-button (click)="sidenav.toggle()" class="mat-icon-button" [hidden]="!isLoggedIn()">
             <md-icon class="material-icons">menu</md-icon>
         </button>
         <a routerLink="/home" routerLinkActive="active">
@@ -7,11 +9,10 @@
                 <div class="logo"></div>
             </div>
         </a>
-        <span>{{title}}</span>
         <span class="fill-remaining-space"></span>
-                <a md-button class="upper" routerLink="/about" [hidden]="!isLoggedIn()">About</a>
-
                 <a md-button class="upper" href="swagger" [hidden]="!isLoggedIn()">API</a>
+
+                <a md-button class="upper" routerLink="/home" [fragment]="about" [hidden]="!isLoggedIn()">About</a>
 
                 <a md-button class="upper" routerLink="/contact" [hidden]="!isLoggedIn()">Contacts</a>
 
@@ -19,45 +20,52 @@
     </md-toolbar>
 
     <md-menu #appMenu="mdMenu">
-        <a md-menu-item role="menuitem" routerLink="/about">
+        <a md-menu-item role="menuitem" routerLink="/profile">
             <md-icon class="material-icons">person</md-icon> <span>Account</span> </a>
             <button md-menu-item role="menuitem" (click)="logout()" aria-disabled="false"><md-icon class="material-icons">exit_to_app</md-icon> <span>Logout</span>  </button>
 </md-menu>
 
-<md-sidenav-container  class="app-component-sidenav">
-    <md-sidenav #sidenav class="sidebar-panel" mode="push">
+<md-sidenav-container  class="app-component-sidenav" fxLayout="column">
+    <md-sidenav #sidenav class="sidebar-panel" mode="push" [hidden]="!isLoggedIn()">
         <md-nav-list class="navigation">
             <md-list-item>
-                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" [routerLink]="['/']">
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" routerLink="/home">
                     <md-icon>Home</md-icon>
-                    <span>Home</span>
+                    <span class="menu-title">Home</span>
                     <span  fxflex></span>
                 </a>
                 </md-list-item>
             <md-list-item>
-                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" [routerLink]="['/']">
-                    <md-icon>Home</md-icon>
-                    <span>Home</span>
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" routerLink="/users">
+                    <md-icon>people</md-icon>
+                    <span class="menu-title">Users</span>
                     <span fxflex></span>
                 </a>
             </md-list-item>
             <md-list-item>
-                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" [routerLink]="['/']">
-                    <md-icon>Home</md-icon>
-                    <span>Home</span>
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" routerLink="/configurations">
+                    <md-icon>desktop_windows</md-icon>
+                    <span class="menu-title">Configurations</span>
                     <span  fxflex></span>
                 </a>
             </md-list-item>
             <md-list-item>
+                <a md-ripple fxLayout="row" class="relative" (click)="sidenav.close()" routerLink="/projects">
+                    <md-icon>work</md-icon>
+                    <span class="menu-title">Projects</span>
+                    <span fxflex></span>
+                </a>
+            </md-list-item>
+            <md-list-item>
                 <a *ngIf="user" md-list-item (click)="sidenav.close(); logout()" class="logout-button">
-                    <md-icon>Home</md-icon>
-                    <span>Home</span>
+                    <md-icon>exit_to_app</md-icon>
+                    <span class="menu-title">Logout</span>
                     <span fxflex></span>
                 </a>
             </md-list-item>
             </md-nav-list>
 </md-sidenav>
-        
+
     <router-outlet></router-outlet>
 </md-sidenav-container>
 <footer class="testIt-footer primary">

@@ -16,6 +16,7 @@ using TestIT.Entities;
 namespace TestIT.Web.Api
 {
     [SwaggerIgnore]
+    [RequireHttps]
     public class AuthorizationController : Controller
     {
         private readonly SignInManager<User> _signInManager;
@@ -32,14 +33,6 @@ namespace TestIT.Web.Api
         [HttpGet("~/connect/logout")]
         public IActionResult Logout()
         {
-            // Ask ASP.NET Core Identity to delete the local and external cookies created
-            // when the user agent is redirected from the external identity provider
-            // after a successful authentication flow (e.g Google or Facebook).
-            // await _signInManager.SignOutAsync();
-
-            // Returning a SignOutResult will ask OpenIddict to redirect the user agent
-            // to the post_logout_redirect_uri specified by the client application.
-            // return SignOut(OpenIdConnectServerDefaults.);
 
             return Json(Ok("logged out"));
         }
@@ -60,6 +53,15 @@ namespace TestIT.Web.Api
                     {
                         Error = OpenIdConnectConstants.Errors.InvalidGrant,
                         ErrorDescription = "The username/password couple is invalid."
+                    });
+                }
+
+                if (!await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    return BadRequest(new OpenIdConnectResponse
+                    {
+                        Error = OpenIdConnectConstants.Errors.AccessDenied,
+                        ErrorDescription = "You must have a confirmed email to log in."
                     });
                 }
 

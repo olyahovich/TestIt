@@ -4,27 +4,12 @@
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
     <OutputType>Exe</OutputType>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
     <RuntimeFrameworkVersion>1.1.2</RuntimeFrameworkVersion>
-    <PreBuildEvent>
-      @echo "---------- Cleaning up .ts files from obj folder (start) ---------"
-      if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
-      del $(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)*.ts /s /q
-      )
-      @echo "---------- Cleaning up .ts files from obj folder (end) ---------"
-    </PreBuildEvent>
+    <UserSecretsId>6b7008d5-3351-40f4-8131-5df353831423</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Update="wwwroot\**\*;node_modules\**\*">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <Content Include="node_modules\**\*">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\TestIT.xml</DocumentationFile>
@@ -56,6 +41,10 @@
     <Content Include="wwwroot\app\components\account\changePassword.component.js" />
     <Content Include="wwwroot\app\components\account\changePassword.component.js.map" />
     <Content Include="wwwroot\app\components\account\changePassword.component.ts" />
+    <Content Include="wwwroot\app\components\account\confirmEmail.component.js" />
+    <Content Include="wwwroot\app\components\account\confirmEmail.component.js.map" />
+    <Content Include="wwwroot\app\components\account\confirmEmail.component.ts" />
+    <Content Include="wwwroot\app\components\account\forgotPassword.component.ts" />
     <Content Include="wwwroot\app\components\account\login.component.js" />
     <Content Include="wwwroot\app\components\account\login.component.js.map" />
     <Content Include="wwwroot\app\components\account\login.component.ts" />
@@ -65,25 +54,28 @@
     <Content Include="wwwroot\app\components\account\register.component.js" />
     <Content Include="wwwroot\app\components\account\register.component.js.map" />
     <Content Include="wwwroot\app\components\account\register.component.ts" />
+    <Content Include="wwwroot\app\components\configurations.component.ts" />
+    <Content Include="wwwroot\app\components\confirmEmail.component.ts" />
     <Content Include="wwwroot\app\components\contact.component.js" />
     <Content Include="wwwroot\app\components\contact.component.js.map" />
     <Content Include="wwwroot\app\components\contact.component.ts" />
     <Content Include="wwwroot\app\components\index.component.js" />
     <Content Include="wwwroot\app\components\index.component.js.map" />
     <Content Include="wwwroot\app\components\index.component.ts" />
+    <Content Include="wwwroot\app\components\project-testRuns.component.ts" />
+    <Content Include="wwwroot\app\components\projects.component.ts" />
+    <Content Include="wwwroot\app\components\users.component.ts" />
     <Content Include="wwwroot\app\models\ChangePasswordViewModel.js" />
     <Content Include="wwwroot\app\models\ChangePasswordViewModel.js.map" />
     <Content Include="wwwroot\app\models\ChangePasswordViewModel.ts" />
     <Content Include="wwwroot\app\models\ErrorResponse.ts" />
+    <Content Include="wwwroot\app\models\ForgotPasswordViewModel.ts" />
     <Content Include="wwwroot\app\models\LoginViewModel.js" />
     <Content Include="wwwroot\app\models\LoginViewModel.js.map" />
     <Content Include="wwwroot\app\models\LoginViewModel.ts" />
     <Content Include="wwwroot\app\models\RegisterViewModel.js" />
     <Content Include="wwwroot\app\models\RegisterViewModel.js.map" />
     <Content Include="wwwroot\app\models\RegisterViewModel.ts" />
-    <Content Include="wwwroot\app\models\testData.js" />
-    <Content Include="wwwroot\app\models\testData.js.map" />
-    <Content Include="wwwroot\app\models\TestData.ts" />
     <Content Include="wwwroot\app\models\user.ts" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js.map" />
@@ -97,15 +89,17 @@
     <Content Include="wwwroot\app\security\auth.service.js" />
     <Content Include="wwwroot\app\security\auth.service.js.map" />
     <Content Include="wwwroot\app\security\auth.service.ts" />
+    <Content Include="wwwroot\app\security\models\OpenIdDictToken.js" />
+    <Content Include="wwwroot\app\security\models\OpenIdDictToken.js.map" />
+    <Content Include="wwwroot\app\security\models\OpenIdDictToken.ts" />
     <Content Include="wwwroot\app\security\OpenIdDictToken.js" />
     <Content Include="wwwroot\app\security\OpenIdDictToken.js.map" />
     <Content Include="wwwroot\app\security\OpenIdDictToken.ts" />
     <Content Include="wwwroot\app\services\membership.service.js" />
     <Content Include="wwwroot\app\services\membership.service.js.map" />
     <Content Include="wwwroot\app\services\membership.service.ts" />
-    <Content Include="wwwroot\app\services\MembershipService.js" />
-    <Content Include="wwwroot\app\services\MembershipService.js.map" />
-    <Content Include="wwwroot\app\services\MembershipService.ts" />
+    <Content Include="wwwroot\app\services\notifications.service.ts" />
+    <Content Include="wwwroot\app\services\routing.service.ts" />
     <Content Include="wwwroot\app\store\actions\user.actions.ts" />
     <Content Include="wwwroot\favicon.ico" />
     <Content Include="wwwroot\main.js" />
@@ -125,6 +119,7 @@
     <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="AspNet.Security.OAuth.Introspection" Version="1.0.0" />
     <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0" />
+    <PackageReference Include="MailKit" Version="1.16.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration.Tools" Version="1.1.0-preview4-final" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.2" />
@@ -138,6 +133,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="NSwag.Annotations" Version="10.6.6324.28499" />
@@ -152,6 +148,7 @@
     <PackageReference Include="RawRabbit.Operations.Publish" Version="2.0.0-beta7" />
     <PackageReference Include="RawRabbit.Operations.Request" Version="2.0.0-beta7" />
     <PackageReference Include="RawRabbit.vNext" Version="2.0.0-beta7" />
+    <PackageReference Include="SendGrid" Version="9.4.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10155" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="BundlerMinifier.Core" Version="2.4.337" />
@@ -166,31 +163,11 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Update="web.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <Target Name="CleanupTypescriptFromObjFolder" BeforeTargets="Build">
-    <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
-  </Target>
   
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="ViewModels\Event\" />
-    <Folder Include="ViewModels\Shared\" />
-    <Folder Include="wwwroot\app\store\effects\" />
-    <Folder Include="wwwroot\app\store\reducers\" />
-    <Folder Include="wwwroot\fonts\" />
+ <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.1" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="Views\Partial\ChangePasswordComponent.cshtml" />
-  </ItemGroup>
+    
   <ItemGroup>
     <ProjectReference Include="..\TestIT.Data\TestIT.Data.csproj" />
     <ProjectReference Include="..\TestIT.SharedLibraries\TestIT.SharedLibraries.csproj" />

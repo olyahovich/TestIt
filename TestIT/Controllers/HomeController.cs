@@ -6,6 +6,7 @@ namespace TestIT.Web.Controllers
 {
     [Authorize]
     [SwaggerIgnore]
+    [RequireHttps]
     public class HomeController : Controller
     {
         [AllowAnonymous]

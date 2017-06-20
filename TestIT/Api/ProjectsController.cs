@@ -15,6 +15,7 @@ namespace TestIT.Web.Api
 {
     [Authorize]
     [Route("api/[controller]")]
+    [RequireHttps]
     public class ProjectsController : Controller
     {
         private readonly TestItContext _context;

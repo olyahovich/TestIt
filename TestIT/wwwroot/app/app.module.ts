@@ -8,11 +8,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
+import { NotificationService } from "./services/notifications.service"
+import { RoutingService} from "./services/routing.service"
 import { ToastrModule } from 'ngx-toastr';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import
     {
         CdkDataTableModule,
-        FullscreenOverlayContainer,
         MdAutocompleteModule,
         MdButtonModule,
         MdButtonToggleModule,
@@ -40,8 +42,8 @@ import
         MdSnackBarModule,
         MdTabsModule,
         MdToolbarModule,
-        MdTooltipModule,
-        OverlayContainer
+        MdTooltipModule
+        
     } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import './rxjs-operators';
@@ -56,7 +58,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     imports: [
         BrowserAnimationsModule, BrowserModule, ReactiveFormsModule, HttpModule, ToastrModule.forRoot({ timeOut: 5000 }), FlexLayoutModule,
         CdkDataTableModule,
-        FullscreenOverlayContainer,
         MdAutocompleteModule,
         MdButtonModule,
         MdButtonToggleModule,
@@ -85,12 +86,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         MdTabsModule,
         MdToolbarModule,
         MdTooltipModule,
-        OverlayContainer,
+        NgxDatatableModule,
         routing
     ],
     declarations: [AppComponent, routedComponents],
     providers: [
         AuthService,
+        NotificationService,
+        RoutingService,
         AuthGuard, Title, { provide: APP_BASE_HREF, useValue: '/' }
     ],
     bootstrap: [AppComponent]

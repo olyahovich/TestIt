@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Test Enviornments";
+}
+
+
+<div fxlayout="row" fxlayoutalign="center start" fxlayoutwrap="wrap" class="table" fxflex>
+    <div fxflex="100" fxflex.gt-sm="70" class="container">
+        <md-card class="example-card">
+            <md-card-header fxlayout="row" fxlayoutwrap="wrap" style="display: flex; align-items: center; flex-flow: row wrap; -webkit-box-orient: horizontal; -webkit-box-direction: normal; box-sizing: border-box;">
+                <div class="column">
+                    <h2> Configurations </h2>
+                </div>
+                <div class="column" style="text-align: justify">
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Search">
+                        <button md-icon-button mdPrefix><md-icon>search</md-icon></button>
+                        <button md-icon-button mdSuffix><md-icon>close</md-icon></button>
+                    </md-input-container>
+                </div>
+                <div class="column" style="text-align: right">
+                    <button md-raised-button color="primary" type="button" class="upper">Add New Configuration</button>
+                </div>
+            </md-card-header>
+            <md-card-content fxlayout="row" fxlayoutwrap="wrap" style="flex-flow: row wrap; -webkit-box-orient: horizontal; -webkit-box-direction: normal; box-sizing: border-box;">
+                        <ngx-datatable class="ngx-datatable material" [rows]="rows"
+                                       [columns]="columns"
+                                       columnMode="force"
+                                       [headerHeight]="50"
+                                       [footerHeight]="0"
+                                       [rowHeight]="50"
+                                       [scrollbarV]="true"
+                                       [scrollbarH]="true">
+                        </ngx-datatable>
+                    
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

@@ -3,6 +3,10 @@
 @addTagHelper *,TestIT.Web
 @model RegisterViewModel
 
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
 <div fxLayout="column" fxFlex class="login" *ngIf="registerViewModel != null">
     <md-card class="login-card" fxFlex>
         <md-card-content class="mat-card-content">
@@ -10,26 +14,31 @@
                 <div>
                     <h4 style="margin-top: 20px;">Register</h4>
                 </div>
-                <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around">
+                <div fxLayout="column" fxLayoutGap=".5rem" fxlayoutAlign="space-around">
                     <md-input-container class="full-width">
                         <input mdInput type="email" name="email" required placeholder="Email" formControlName="email">
-                        <md-hint align="left" *ngIf="registerForm.controls.email.errors && !registerForm.controls.email.pristine" class="error">Email is required</md-hint>
+                        <button md-icon-button mdSuffix (click)="clearEmail($event)"><md-icon>close</md-icon></button>
+
+                        <md-hint align="left" *ngIf="formErrors.email" class="error">{{ formErrors.email }}</md-hint>
                     </md-input-container>
 
                     <md-input-container class="full-width">
                         <input mdInput type="password" id="password" required name="password" placeholder="Password" formControlName="password">
-                        <md-hint align="left" *ngIf="registerForm.controls.password.errors && !registerForm.controls.password.pristine" class="error">Password must be atleast 6 characters</md-hint>
+                        <button md-icon-button mdSuffix><md-icon (click)="clearPassword($event)">close</md-icon></button>
+                        <md-hint align="left" *ngIf="formErrors.password" class="error">{{ formErrors.password }}</md-hint>
                     </md-input-container>
 
                     <md-input-container class="full-width">
-                        <input mdInput type="password" id="confirmPassword" required name="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
-                        <md-hint align="left" *ngIf="registerForm.controls.password.valid && registerForm.hasError('passwordmismatch')" class="error">Must match Password</md-hint>
-                        <md-hint align="left" *ngIf="registerForm.controls.password.errors && !registerForm.controls.password.pristine" class="error">Password must be atleast 6 characters</md-hint>
+                        <input mdInput type="password" id="confirmPassword" required name="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" (keyup.enter)="register($event)">
+                        <md-hint align="left" *ngIf="formErrors.confirmPassword" class="error">{{ formErrors.confirmPassword }}</md-hint>
+                        <button md-icon-button mdSuffix (click)="clearConfirmPassword($event)"><md-icon>close</md-icon></button>
+                        <md-hint align="left" *ngIf="registerForm.controls.password.valid && registerForm.hasError('passwordmismatch')&& registerForm.controls.confirmPassword.touched" class="error">Passwords should be matched.</md-hint>
+
                     </md-input-container>
                 </div>
 
                 <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around" style="margin-top: 1rem">
-                    <button md-raised-button color="primary" type="button" (click)="register($event)" class="upper">Sign up</button>
+                    <button md-raised-button color="primary" type="button" (click)="register($event)" class="upper" [disabled]="!registerForm.valid">Sign up</button>
                     <p>
                         Already registered? <a routerLink="/login"> Click here to Login</a>
                     </p>

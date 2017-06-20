@@ -12,4 +12,5 @@ import 'rxjs/add/operator/catch';
 })
 
 export class AboutComponent {
+   
 }

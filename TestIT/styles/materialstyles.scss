@@ -341,10 +341,14 @@ md-toolbar .notification-label {
 }
 
 md-toolbar.main-header {
-    padding: 0 8px;
     position: relative;
     box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
     z-index: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 md-toolbar.main-header .branding {
@@ -531,7 +535,7 @@ md-toolbar.main-header .logo {
 
     .ngx-datatable.material {
         padding: 0;
-        margin: .33333333rem;
+        margin: .99999999rem;
         box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
         transition: box-shadow .28s cubic-bezier(.4, 0, .2, 1);
         will-change: box-shadow;
@@ -1185,10 +1189,6 @@ md-toolbar.main-header .logo {
         background: rgba(0, 0, 0, .04);
     }
 
-    md-list a[md-list-item] .mat-list-item-content, md-list md-list-item .mat-list-item-content, md-nav-list a[md-list-item] .mat-list-item-content, md-nav-list md-list-item .mat-list-item-content {
-        font-size: .875rem !important;
-    }
-
     body .mat-select-panel {
         background-color: #fff;
     }
@@ -1229,14 +1229,15 @@ md-toolbar.main-header .logo {
         font-size: .875rem !important;
     }
 
-    .mat-tab-label {
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
+.mat-tab-label {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: rgba(0,0,0,.87);
+}

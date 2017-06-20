@@ -13,6 +13,7 @@ using TestIT.SharedLibraries.Messages;
 namespace TestIT.Web.Controllers
 {
     [SwaggerIgnore]
+    [RequireHttps]
     public class ValuesController : Controller
     {
         private readonly IBusClient _busClient;

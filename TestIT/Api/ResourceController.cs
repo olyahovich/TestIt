@@ -12,6 +12,7 @@ namespace TestIT.Web.Api
 {
     [SwaggerIgnore]
     [Route("api")]
+    [RequireHttps]
     public class ResourceController : Controller
     {
         private readonly UserManager<User> _userManager;

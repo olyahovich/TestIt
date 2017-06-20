@@ -3,30 +3,38 @@
 @addTagHelper *,TestIT.Web
 @model LoginViewModel
 
+@{
+    ViewData["Title"] = "Login";
+}
+
 <div fxLayout="column" fxFlex class="login"  *ngIf="loginViewModel != null">
     <md-card class="login-card" fxFlex>
         <md-card-content class="mat-card-content">
             <form role="form" [formGroup]="loginForm" novalidate>
                 <div><h4 style="margin-top: 20px;">Login</h4><p>Please enter your email address and password:</p></div>
-                <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around">
+                <div fxLayout="column" fxLayoutGap="0.5rem" fxlayoutAlign="space-around">
                     <md-input-container class="full-width">
-                        <input mdInput type="email" placeholder="Email" required name="email" formControlName="email">
-                        <md-hint align="left" *ngIf="loginForm.controls.email.errors && !loginForm.controls.email.pristine" class="error">Email is required</md-hint>
+                        <input mdInput type="email" placeholder="Email" required name="email" formControlName="email" >
+                        <button md-icon-button mdSuffix (click)="clearEmail($event)"><md-icon>close</md-icon></button>
+                        <md-hint align="left" *ngIf="formErrors.email" class="error">{{ formErrors.email }}</md-hint>
                     </md-input-container>
                     <md-input-container class="full-width">
-                        <input mdInput type="password" id="password" placeholder="Password" required name="password" formControlName="password">
-                        <md-hint align="left" *ngIf="loginForm.controls.password.errors && !loginForm.controls.password.pristine" class="error">Password is required</md-hint>
+                        <input mdInput type="password" id="password" placeholder="Password" required name="password" formControlName="password" (keyup.enter)="login($event)">
+                        <button md-icon-button mdSuffix (click)="clearPassword($event)"><md-icon>close</md-icon></button>
+                        <md-hint align="left" *ngIf="formErrors.password" class="error">{{ formErrors.password }}</md-hint>
+
                     </md-input-container>
                 </div>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1rem" style="align-items: center; justify-content: space-between;">
+                    <md-slide-toggle formControlName="rememberMe" name="rememberMe">Remember me</md-slide-toggle> <p><a routerLink="/forgotPassword"> Forgot Password?</a></p>
+                </div>
                 <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around" style="margin-top: 1rem">
-                    <button md-raised-button color="primary" type="button" (click)="login($event)" class="upper">Sign in</button>
+                    <button md-raised-button color="primary" type="button" (click)="login($event)" class="upper" [disabled]="!loginForm.valid">Sign in</button>
                     <p>
                         Not registered? <a routerLink="/register"> Click here to Register</a>
                     </p>
                 </div>
-                <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1rem" style="align-items: center; justify-content: space-between;">
-                   <md-slide-toggle>Remember me</md-slide-toggle> <p><a routerLink="/register"> Forgot Password?</a></p>
-                </div>
+
             </form>
         </md-card-content>
     </md-card>

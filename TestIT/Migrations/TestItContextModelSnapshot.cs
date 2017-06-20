@@ -374,8 +374,6 @@ namespace TestIT.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ConfigurationId");
-
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("HostName");
@@ -384,11 +382,9 @@ namespace TestIT.Web.Migrations
 
                     b.Property<DateTime>("ModifiedOn");
 
-                    b.Property<int?>("RemoteHostConfigurationId");
+                    b.Property<int>("RemoteHostConfigurationId");
 
-                    b.Property<int?>("RemoteHostStatusId");
-
-                    b.Property<int>("StatusId");
+                    b.Property<int>("RemoteHostStatusId");
 
                     b.Property<string>("UserId");
 
@@ -522,39 +518,21 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("RoleId");
 
+                    b.Property<string>("UserAssignmentId");
+
+                    b.Property<int?>("UserAssignmentId1");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("UserAssignmentId1");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("RoleUserAssignments");
-                });
-
-            modelBuilder.Entity("TestIT.Entities.TestData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<decimal>("Currency");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(80);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(24);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TestDatas");
                 });
 
             modelBuilder.Entity("TestIT.Entities.TestRun", b =>
@@ -636,17 +614,11 @@ namespace TestIT.Web.Migrations
 
                     b.Property<string>("Phase");
 
-                    b.Property<int>("TestResultId");
-
                     b.Property<int>("TestRunId");
-
-                    b.Property<int?>("TestRunResultId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TestRunId");
-
-                    b.HasIndex("TestRunResultId");
 
                     b.ToTable("TestRunPhases");
                 });
@@ -761,6 +733,8 @@ namespace TestIT.Web.Migrations
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName");
+
+                    b.Property<string>("FullName");
 
                     b.Property<bool>("IsLocked");
 
@@ -947,11 +921,13 @@ namespace TestIT.Web.Migrations
                 {
                     b.HasOne("TestIT.Entities.RemoteHostConfiguration", "RemoteHostConfiguration")
                         .WithMany()
-                        .HasForeignKey("RemoteHostConfigurationId");
+                        .HasForeignKey("RemoteHostConfigurationId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("TestIT.Entities.RemoteHostStatus", "RemoteHostStatus")
                         .WithMany()
-                        .HasForeignKey("RemoteHostStatusId");
+                        .HasForeignKey("RemoteHostStatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("TestIT.Entities.User", "User")
                         .WithMany()
@@ -1004,6 +980,10 @@ namespace TestIT.Web.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId");
 
+                    b.HasOne("TestIT.Entities.UserAssignment", "UserAssignment")
+                        .WithMany()
+                        .HasForeignKey("UserAssignmentId1");
+
                     b.HasOne("TestIT.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -1050,10 +1030,6 @@ namespace TestIT.Web.Migrations
                         .WithMany()
                         .HasForeignKey("TestRunId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("TestIT.Entities.TestRunResult", "TestRunResult")
-                        .WithMany()
-                        .HasForeignKey("TestRunResultId");
                 });
 
             modelBuilder.Entity("TestIT.Entities.TestRunRemoteHost", b =>

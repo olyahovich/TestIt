@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
  namespace TestIT.Entities
 { 
         // Add profile data for application users by adding properties to the ApplicationUser class
-        public class User : IdentityUser
+    public class User : IdentityUser
     {
         public User()
         {
@@ -20,6 +20,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
         public DateTime ModifiedOn { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
-        public string FullName => LastName + ", " + FirstName;
+        public string FullName { get; set; }
     }
 }

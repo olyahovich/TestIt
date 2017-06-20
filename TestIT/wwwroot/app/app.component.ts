@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-
 import { Http, Response, Headers } from '@angular/http';
 import { AuthService } from './security/auth.service';
+import { RoutingService } from "./services/routing.service";
 
 @Component({
     selector: 'testIt-app',
@@ -13,7 +12,7 @@ import { AuthService } from './security/auth.service';
 export class AppComponent {
     angularClientSideData = 'Angular';
 
-    public constructor(private router: Router, private titleService: Title, private http: Http, private authService: AuthService) { }
+    public constructor(private routingService: RoutingService, private titleService: Title, private http: Http, private authService: AuthService) { }
 
     // wrapper to the Angular title service.
     public setTitle(newTitle: string) {
@@ -33,7 +32,7 @@ export class AppComponent {
                 // clear token in browser
                 this.authService.logout();
                 // return to 'home' page
-                this.router.navigate(['home']);
+                this.routingService.navigateToSignIn();
             },
             error => {
                 // failed; TODO: add some nice toast / error handling

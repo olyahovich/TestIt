@@ -36,7 +36,8 @@
             '@ngrx/core': 'npm:@ngrx/core/bundles/core.umd.js',
             '@ngrx/effects': 'npm:@ngrx/effects/bundles/effects.umd.js',
             '@ngrx/store': 'npm:@ngrx/store/bundles/store.umd.js',
-            '@ngrx/store-devtools': 'npm:@ngrx/store-devtools/bundles/store-devtools.umd.js'
+            '@ngrx/store-devtools': 'npm:@ngrx/store-devtools/bundles/store-devtools.umd.js',
+            '@swimlane/ngx-datatable':'npm:@swimlane/ngx-datatable/release/index.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {

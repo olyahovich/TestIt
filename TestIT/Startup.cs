@@ -1,7 +1,6 @@
 ﻿using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,21 +17,16 @@ using RawRabbit.Enrichers.GlobalExecutionId;
 using RawRabbit.vNext;
 using RawRabbit.vNext.Logging;
 using RawRabbit.vNext.Pipe;
-using Serilog;
-using Serilog.Events;
 using StaticDotNet.EntityFrameworkCore.ModelConfiguration;
 using System;
 using System.IO;
-using System.Net;
 using System.Reflection;
-using System.Threading.Tasks;
-using AspNet.Security.OAuth.Validation;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using TestIT.Data;
 using TestIT.Entities;
+using TestIT.Web.Api;
+using TestIT.Web.Services;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
-using ILogger = Serilog.ILogger;
 
 
 namespace TestIT.Web
@@ -48,7 +42,8 @@ namespace TestIT.Web
                             .SetBasePath(CurrentEnvironment.ContentRootPath)
                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                             .AddJsonFile($"appsettings.{CurrentEnvironment.EnvironmentName}.json", optional: true)
-                            .AddEnvironmentVariables();
+                            .AddEnvironmentVariables()
+                            .AddUserSecrets<Startup>();
             Configuration = builder.Build();
 
         }
@@ -58,8 +53,11 @@ namespace TestIT.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             services.AddDbContext<TestItContext>(options =>
             {
@@ -108,28 +106,11 @@ namespace TestIT.Web
                         .UseGlobalExecutionId()
                 });
             // Register the Identity services.
-            services.AddIdentity<User, Role>(/*config =>
+            services.AddIdentity<User, Role>(config =>
             {
-                config.Cookies.ApplicationCookie.LoginPath = "/login";
+                config.SignIn.RequireConfirmedEmail = true;
                 config.Cookies.ApplicationCookie.AutomaticChallenge = false;
-
-                // if we are accessing the /api and an unauthorized request is made
-                // do not redirect to the login page, but simply return "Unauthorized"
-                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents
-                {
-                    OnRedirectToLogin = ctx =>
-                    {
-                        if (ctx.Request.Path.StartsWithSegments("/api") &&
-                                                                    ctx.Response.StatusCode == (int)HttpStatusCode.OK)
-                            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        else
-                            ctx.Response.Redirect(ctx.RedirectUri);
-
-                        return Task.CompletedTask;
-                    }
-                };
-                
-            }*/)
+            })
                 .AddEntityFrameworkStores<TestItContext>()
                 .AddDefaultTokenProviders();
 
@@ -140,8 +121,11 @@ namespace TestIT.Web
             {
                 options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
                 options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
-                //options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+                options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+                options.SignIn.RequireConfirmedEmail = true;
             });
+
+
 
             // Register the OpenIddict services.
             services.AddOpenIddict(options =>
@@ -160,10 +144,11 @@ namespace TestIT.Web
                        .EnableTokenEndpoint("/connect/token")
                        .EnableUserinfoEndpoint("/api/userinfo");
 
-                // Note: the Mvc.Client sample only uses the authorization code flow but you can enable
-                // the other flows if you need to support implicit, password or client credentials.
                 options.AllowPasswordFlow();
-                
+                options.AllowRefreshTokenFlow();
+                options.UseJsonWebTokens();
+                options.AddEphemeralSigningKey();
+                options.SetAccessTokenLifetime(TimeSpan.FromDays(1));
                 // When request caching is enabled, authorization and logout requests
                 // are stored in the distributed cache by OpenIddict and the user agent
                 // is redirected to the same page with a single parameter (request_id).
@@ -177,6 +162,16 @@ namespace TestIT.Web
                     options.DisableHttpsRequirement();
                 }
             });
+
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            // Add framework services
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

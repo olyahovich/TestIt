@@ -2,8 +2,8 @@
 import { Title }     from '@angular/platform-browser';
 
 @Component({
-    selector: 'register',
-   templateUrl: 'partial/manageComponent'
+    selector: 'my-user-profile',
+   templateUrl: 'partial/profileComponent'
 })
 
 export class ManageComponent {
