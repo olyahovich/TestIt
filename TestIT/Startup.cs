@@ -17,6 +17,7 @@ using RawRabbit.Enrichers.GlobalExecutionId;
 using RawRabbit.vNext;
 using RawRabbit.vNext.Logging;
 using RawRabbit.vNext.Pipe;
+using RawRabbit.Enrichers.MessageContext;
 using StaticDotNet.EntityFrameworkCore.ModelConfiguration;
 using System;
 using System.IO;
@@ -26,6 +27,7 @@ using TestIT.Data;
 using TestIT.Entities;
 using TestIT.Web.Api;
 using TestIT.Web.Services;
+using TestIT.SharedLibraries.Messages;
 using ExchangeType = RawRabbit.Configuration.Exchange.ExchangeType;
 
 
@@ -72,13 +74,13 @@ namespace TestIT.Web
                 {
                     ClientConfiguration = new RawRabbitConfiguration
                 {
-                    Username = "guest",
-                    Password = "guest",
+                    Username = "admin",
+                    Password = "admin",
                     VirtualHost = "/",
-                    Port = 5762,
-                    Hostnames = { "127.0.0.1" },
-                    RequestTimeout = TimeSpan.FromSeconds(10),
-                    PublishConfirmTimeout = TimeSpan.FromSeconds(10),
+                    Port = 5672,
+                    Hostnames = { "10.51.0.58" },
+                    RequestTimeout = TimeSpan.FromSeconds(100),
+                    PublishConfirmTimeout = TimeSpan.FromSeconds(100),
                     PersistentDeliveryMode = true,
                     TopologyRecovery = true,
                     AutoCloseConnection = false,
@@ -104,7 +106,11 @@ namespace TestIT.Web
                     Plugins = p => p
                         .UseStateMachine()
                         .UseGlobalExecutionId()
+                        .UseMessageContext<TestItMessageContext>()
                 });
+
+            var physicalProvider = CurrentEnvironment.ContentRootFileProvider;
+            services.AddSingleton<IFileProvider>(physicalProvider);
             // Register the Identity services.
             services.AddIdentity<User, Role>(config =>
             {

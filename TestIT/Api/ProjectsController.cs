@@ -10,6 +10,7 @@ using TestIT.Data;
 using TestIT.Entities;
 using TestIT.Web.Helpers;
 using TestIT.Web.ViewModels;
+using TestIT.Web.ViewModels.Default;
 
 namespace TestIT.Web.Api
 {
@@ -64,12 +65,12 @@ namespace TestIT.Web.Api
 
         // POST api/Projects
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Project value)
+        public async Task<IActionResult> Post([FromBody]ProjectViewModel value)
         {
             ICollection<ValidationResult> results = new List<ValidationResult>();
 
             if (!value.IsModelValid(out results))
-            {
+            { 
                 return Json(BadRequest(results));
             }
 
@@ -79,7 +80,7 @@ namespace TestIT.Web.Api
                 var newTestData = _context.AddAsync(value);
                 await _context.SaveChangesAsync();
 
-                return Json(Ok(newTestData.Result.Entity as Project));
+                return Json(Ok(newTestData.Result.Entity));
             }
             catch (DbUpdateException exception)
             {

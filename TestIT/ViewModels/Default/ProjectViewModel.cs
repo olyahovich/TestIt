@@ -1,32 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TestIT.Entities;
 
 
 namespace TestIT.Web.ViewModels.Default
 {
    public class ProjectViewModel
     {
-        [Required]
-        [StringLength(24, MinimumLength = 4)]
-        [Display(Description = "Project Title", Name = "Project Title", Prompt = "Title")]
         public string Title { get; set; }
-
-        [Display(Description = "Payment Amount (in dollars)", Name = "Amount", Prompt = "Payment Amount")]
-        [DataType(DataType.Currency)]
-        public decimal Currency { get; set; }
-
-        [Required, RegularExpression(@"([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})", ErrorMessage = "Please enter a valid email address.")]
-        [EmailAddress]
-        [StringLength(80, MinimumLength = 6)]
-        [Display(Description = "Email address", Name = "EmailAddress", ShortName = "Email", Prompt = "Email Address")]
-        [DataType(DataType.EmailAddress)]
-        public string EmailAddress { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Description = "Password", Name = "Password")]
-        public string Password { get; set; }
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public int ProjectTypeId { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public DateTime CompletedOn { get; set; }
+        public string UserId { get; set; }
+        public string ModifiedBy { get; set; }
+        public string CompletedBy { get; set; }
+        public int ProjectStatusId { get; set; }
 
         internal bool IsModelValid()
         {

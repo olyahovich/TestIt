@@ -1,7 +1,5 @@
 ﻿using System;
 using Microsoft.Extensions.Options;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;

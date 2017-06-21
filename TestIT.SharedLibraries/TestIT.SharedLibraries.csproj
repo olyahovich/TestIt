@@ -17,6 +17,9 @@
     <Reference Include="RawRabbit.Enrichers.Attributes">
       <HintPath>C:\Users\Олег\.nuget\packages\rawrabbit.enrichers.attributes\2.0.0-beta5\lib\netstandard1.5\RawRabbit.Enrichers.Attributes.dll</HintPath>
     </Reference>
+    <Reference Include="RawRabbit.Enrichers.MessageContext">
+      <HintPath>..\..\..\Install\nuget\rawrabbit.enrichers.messagecontext\2.0.0-beta7\lib\netstandard1.5\RawRabbit.Enrichers.MessageContext.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
