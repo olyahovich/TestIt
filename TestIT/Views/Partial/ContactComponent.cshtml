@@ -1,20 +1,32 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Test Action";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div fxLayout="column" fxFlex class="login" *ngIf="testItViewModel != null">
+    <md-card class="login-card" fxFlex>
+        <md-card-content class="mat-card-content">
+            <form role="form" [formGroup]="testItForm" novalidate>
+                <div><h4 style="margin-top: 20px;">Test Action</h4><p>Please provide test action parameters </p></div>
+                <div fxLayout="column" fxLayoutGap="0.5rem" fxlayoutAlign="space-around">
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" placeholder="Path To Test File" required name="pathtofile" formControlName="pathtofile">
+                        <md-hint align="left" *ngIf="formErrors.pathtofile" class="error">{{ formErrors.pathtofile }}</md-hint>
+                    </md-input-container>
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" id="filename" placeholder="File Name" required name="filename" formControlName="filename" (keyup.enter)="testIt($event)">
+                        <md-hint align="left" *ngIf="formErrors.filename" class="error">{{ formErrors.filename }}</md-hint>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                    </md-input-container>
+                </div>
 
-<button md-raised-button (click)="showSuccess()" class="btn btn-primary">Open Toast</button>
+                <div fxLayout="column" fxLayoutGap="1rem" fxlayoutAlign="space-around" style="margin-top: 1rem">
+                    <button md-raised-button color="primary" type="button" (click)="testIt($event)" class="upper" [disabled]="!testItForm.valid">TestIt</button>
+                    <button md-raised-button color="primary" type="button" (click)="Cancel($event)" class="upper" >Cancel</button>
+
+                </div>
+
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
 

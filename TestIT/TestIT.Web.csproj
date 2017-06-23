@@ -76,6 +76,7 @@
     <Content Include="wwwroot\app\models\RegisterViewModel.js" />
     <Content Include="wwwroot\app\models\RegisterViewModel.js.map" />
     <Content Include="wwwroot\app\models\RegisterViewModel.ts" />
+    <Content Include="wwwroot\app\models\TestItViewModel.ts" />
     <Content Include="wwwroot\app\models\user.ts" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js" />
     <Content Include="wwwroot\app\models\ViewModelResponse.js.map" />

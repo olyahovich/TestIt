@@ -8,6 +8,7 @@ using NSwag.Annotations;
 using RawRabbit;
 using RawRabbit.Enrichers.MessageContext.Context;
 using RawRabbit.Operations.MessageSequence;
+using RawRabbit.Pipe;
 using TestIT.SharedLibraries.Messages;
 
 namespace TestIT.Web.Controllers
@@ -29,13 +30,14 @@ namespace TestIT.Web.Controllers
         [Route("api/values")]
         public async Task<IActionResult> PostAsync([FromBody]RequestMessage request)
         {
-            _logger.LogDebug("Recieved Value Request.");
+          
             var valueSequence = _busClient.ExecuteSequence(s => s
-                .PublishAsync(request)
+                .PublishAsync(request, ctx => ctx.UsePublisherConfiguration(cfg =>
+                cfg.OnExchange("custom_exchange")
+                   .WithProperties(p => p.DeliveryMode = 1)))
                 .When<ValueCreationFailed, TestItMessageContext>(
                     (failed, context) =>
                     {
-                        _logger.LogWarning("Unable to create Values. Exception: {0}", failed.Exception);
                         return Task.FromResult(true);
                     }, it => it.AbortsExecution())
                 .Complete<ResponseMessage>()
@@ -49,7 +51,6 @@ namespace TestIT.Web.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, $"No response recieved. Is the Console App started? \n\nException: {e}");
             }
-            
 
             return Ok(valueSequence.Task.Result.ResultPath);
         }

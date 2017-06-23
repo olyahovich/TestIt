@@ -79,23 +79,22 @@ namespace TestIT.Web
                     VirtualHost = "/",
                     Port = 5672,
                     Hostnames = { "10.51.0.58" },
-                    RequestTimeout = TimeSpan.FromSeconds(100),
-                    PublishConfirmTimeout = TimeSpan.FromSeconds(100),
-                    PersistentDeliveryMode = true,
+                    RequestTimeout = TimeSpan.FromSeconds(10),
+                    PublishConfirmTimeout = TimeSpan.FromSeconds(50),
                     TopologyRecovery = true,
                     AutoCloseConnection = false,
                     AutomaticRecovery = true,
                     Exchange = new GeneralExchangeConfiguration
                     {
-                        AutoDelete = false,
+                        AutoDelete = true,
                         Durable = true,
                         Type = ExchangeType.Topic
                     },
                     Queue = new GeneralQueueConfiguration
                     {
-                        AutoDelete = false,
+                        AutoDelete = true,
                         Durable = true,
-                        Exclusive = false
+                        Exclusive = true
                     },
                     RecoveryInterval = TimeSpan.FromMinutes(1),
                     GracefulShutdown = TimeSpan.FromMinutes(1),

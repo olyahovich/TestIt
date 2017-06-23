@@ -21,7 +21,7 @@ var appRoutes = [
     { path: 'register', component: register_component_1.RegisterComponent, data: { title: 'Register' } },
     { path: 'forgotPassword', component: forgotPassword_component_1.ForgotPasswordCopmonent, data: { title: 'Reset Password' } },
     { path: 'changePassword', component: changePassword_component_1.ChangePasswordComponent, data: { title: 'Change Password' }, canActivate: [auth_guard_service_1.AuthGuard] },
-    { path: 'contact', component: contact_component_1.ContactComponent, data: { title: 'Contacts' }, canActivate: [auth_guard_service_1.AuthGuard] },
+    { path: 'testAction', component: contact_component_1.ContactComponent, data: { title: 'Contacts' }, canActivate: [auth_guard_service_1.AuthGuard] },
     { path: 'profile', component: manage_component_1.ManageComponent, data: { title: 'Manage Account' }, canActivate: [auth_guard_service_1.AuthGuard] },
     { path: 'home#about', component: about_component_1.AboutComponent, canActivate: [auth_guard_service_1.AuthGuard] },
     { path: 'users', component: users_component_1.UsersComponent, data: { title: 'Users' }, canActivate: [auth_guard_service_1.AuthGuard] },

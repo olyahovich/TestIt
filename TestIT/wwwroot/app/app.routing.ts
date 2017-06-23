@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
     { path: 'forgotPassword', component: ForgotPasswordCopmonent, data: { title: 'Reset Password' } },
     { path: 'changePassword', component: ChangePasswordComponent, data: { title: 'Change Password' }, canActivate: [AuthGuard] },
-    { path: 'contact', component: ContactComponent, data: { title: 'Contacts' }, canActivate: [AuthGuard] },
+    { path: 'testAction', component: ContactComponent, data: { title: 'Contacts' }, canActivate: [AuthGuard] },
     { path: 'profile', component: ManageComponent, data: { title: 'Manage Account' }, canActivate: [AuthGuard] },
     { path: 'home#about', component: AboutComponent, canActivate: [AuthGuard] },
     { path: 'users', component: UsersComponent, data: { title: 'Users' }, canActivate: [AuthGuard] },
